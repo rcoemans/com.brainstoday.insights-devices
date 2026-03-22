@@ -133,10 +133,6 @@ module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
         this.setCapabilityValue('measure_temperature.exhaust', Number(data.exhaustTemp.toFixed(2))).catch(this.error);
       }
 
-      if (data.Air_Quality !== undefined) {
-        this.setCapabilityValue('measure_air_quality', data.Air_Quality).catch(this.error);
-      }
-
       this.log('Status updated from MQTT');
     } catch (error) {
       this.error('Failed to parse status message:', error);

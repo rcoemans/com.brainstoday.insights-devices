@@ -5,10 +5,10 @@
   },
   "class": "sensor",
   "capabilities": [
-    "measure_level.ground"
+    "ground_level"
   ],
   "capabilitiesOptions": {
-    "measure_level.ground": {
+    "ground_level": {
       "title": {
         "en": "Ground Level",
         "nl": "Grondniveau"

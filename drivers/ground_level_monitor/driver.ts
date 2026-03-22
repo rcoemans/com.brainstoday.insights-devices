@@ -11,7 +11,7 @@ module.exports = class GroundLevelMonitorDriver extends Homey.Driver {
     
     const levelCondition = this.homey.flow.getConditionCard('ground_level_compare');
     levelCondition.registerRunListener(async (args, state) => {
-      const value = args.device.getCapabilityValue('measure_level.ground');
+      const value = args.device.getCapabilityValue('ground_level');
       return this.compareValues(value, args.operator, args.value);
     });
   }

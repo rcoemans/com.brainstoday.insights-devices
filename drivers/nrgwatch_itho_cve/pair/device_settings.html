@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="/homey.js" data-origin="pairing"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 20px;
+        }
+        .field-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .help-text {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 data-i18n="pair.device_settings.title">Configure NRG-Watch Itho CVE</h1>
+    
+    <div class="field-group">
+        <label for="device_name" data-i18n="pair.device_settings.name">Device Name</label>
+        <input type="text" id="device_name" placeholder="Itho CVE" value="Itho CVE">
+        <p class="help-text" data-i18n="pair.device_settings.name_hint">Enter a name for this device</p>
+    </div>
+
+    <div class="field-group">
+        <label for="topic_status" data-i18n="pair.device_settings.topic_status">Status Topic</label>
+        <input type="text" id="topic_status" placeholder="itho/ithostatus" value="itho/ithostatus">
+        <p class="help-text" data-i18n="pair.device_settings.topic_status_hint">MQTT topic for status updates</p>
+    </div>
+
+    <div class="field-group">
+        <label for="topic_state" data-i18n="pair.device_settings.topic_state">State Topic</label>
+        <input type="text" id="topic_state" placeholder="itho/state" value="itho/state">
+        <p class="help-text" data-i18n="pair.device_settings.topic_state_hint">MQTT topic for current state</p>
+    </div>
+
+    <div class="field-group">
+        <label for="topic_lwt" data-i18n="pair.device_settings.topic_lwt">LWT Topic</label>
+        <input type="text" id="topic_lwt" placeholder="itho/LWT" value="itho/LWT">
+        <p class="help-text" data-i18n="pair.device_settings.topic_lwt_hint">MQTT topic for Last Will and Testament</p>
+    </div>
+
+    <div class="field-group">
+        <label for="topic_cmd" data-i18n="pair.device_settings.topic_cmd">Command Topic</label>
+        <input type="text" id="topic_cmd" placeholder="itho/cmd" value="itho/cmd">
+        <p class="help-text" data-i18n="pair.device_settings.topic_cmd_hint">MQTT topic for sending commands</p>
+    </div>
+
+    <script>
+        function onHomeyReady(Homey) {
+            Homey.ready();
+
+            Homey.on('continue', function() {
+                const deviceData = {
+                    name: document.getElementById('device_name').value || 'Itho CVE',
+                    topic_status: document.getElementById('topic_status').value || 'itho/ithostatus',
+                    topic_lastcmd: 'itho/lastcmd',
+                    topic_state: document.getElementById('topic_state').value || 'itho/state',
+                    topic_lwt: document.getElementById('topic_lwt').value || 'itho/LWT',
+                    topic_cmd: document.getElementById('topic_cmd').value || 'itho/cmd'
+                };
+
+                Homey.emit('device_settings', deviceData);
+            });
+        }
+    </script>
+</body>
+</html>

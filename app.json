@@ -2,17 +2,20 @@
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.brainstoday.insights-devices",
   "version": "1.0.0",
-  "compatibility": ">=12.4.0",
+  "compatibility": ">=5.0.0",
   "sdk": 3,
+  "brandColor": "#9b59b6",
   "runtime": "nodejs",
   "platforms": [
     "local"
   ],
   "name": {
-    "en": "Insights Devices"
+    "en": "Insights Devices",
+    "nl": "Insights Apparaten"
   },
   "description": {
-    "en": "Create pre-deficed custom virtual measurement devices in Homey which are receiving their data via MQTT."
+    "en": "Create predefined and custom virtual measurement devices in Homey that receive their data via MQTT.",
+    "nl": "Maak voorgedefinieerde en aangepaste virtuele meetapparaten in Homey die hun gegevens via MQTT ontvangen."
   },
   "category": [
     "climate"
@@ -26,5 +29,1365 @@
   "author": {
     "name": "Robert Coemans",
     "email": "r.coemans@hotmail.com"
+  },
+  "homepage": "https://github.com/rcoemans/com.brainstoday.insights-devices",
+  "support": "https://github.com/rcoemans/com.brainstoday.insights-devices/issues",
+  "source": "https://github.com/rcoemans/com.brainstoday.insights-devices",
+  "bugs": {
+    "url": "https://github.com/rcoemans/com.brainstoday.insights-devices/issues"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "MQTT broker connected",
+          "nl": "MQTT broker verbonden"
+        },
+        "id": "broker_connected"
+      },
+      {
+        "title": {
+          "en": "MQTT broker disconnected",
+          "nl": "MQTT broker verbinding verbroken"
+        },
+        "id": "broker_disconnected"
+      },
+      {
+        "title": {
+          "en": "Calculated value changed",
+          "nl": "Berekende waarde gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=custom_mqtt_sensor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "field",
+            "type": "string",
+            "title": {
+              "en": "Field",
+              "nl": "Veld"
+            },
+            "example": "Delta T"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            },
+            "example": 5.4
+          }
+        ],
+        "id": "custom_sensor_calculated_changed"
+      },
+      {
+        "title": {
+          "en": "Mapped value changed",
+          "nl": "Gemapte waarde gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=custom_mqtt_sensor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "field",
+            "type": "string",
+            "title": {
+              "en": "Field",
+              "nl": "Veld"
+            },
+            "example": "Temperature"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Value",
+              "nl": "Waarde"
+            },
+            "example": 22.5
+          }
+        ],
+        "id": "custom_sensor_value_changed"
+      },
+      {
+        "title": {
+          "en": "Delta T changed",
+          "nl": "Delta T gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=floor_heating_monitor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Delta T",
+              "nl": "Delta T"
+            },
+            "example": 5.4
+          }
+        ],
+        "id": "delta_t_changed"
+      },
+      {
+        "title": {
+          "en": "Flow temperature changed",
+          "nl": "Aanvoertemperatuur gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=floor_heating_monitor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Temperature",
+              "nl": "Temperatuur"
+            },
+            "example": 35.2
+          }
+        ],
+        "id": "flow_temperature_changed"
+      },
+      {
+        "title": {
+          "en": "Ground level changed",
+          "nl": "Grondniveau gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ground_level_monitor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Level",
+              "nl": "Niveau"
+            },
+            "example": 18.4
+          }
+        ],
+        "id": "ground_level_changed"
+      },
+      {
+        "title": {
+          "en": "Fan speed changed",
+          "nl": "Ventilatorsnelheid gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Speed",
+              "nl": "Snelheid"
+            },
+            "example": 920
+          }
+        ],
+        "id": "itho_fan_speed_changed"
+      },
+      {
+        "title": {
+          "en": "Online status changed",
+          "nl": "Online status gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "online",
+            "type": "boolean",
+            "title": {
+              "en": "Online",
+              "nl": "Online"
+            },
+            "example": true
+          }
+        ],
+        "id": "itho_online_changed"
+      },
+      {
+        "title": {
+          "en": "Fan preset changed",
+          "nl": "Ventilator preset gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "preset",
+            "type": "string",
+            "title": {
+              "en": "Preset",
+              "nl": "Preset"
+            },
+            "example": "high"
+          }
+        ],
+        "id": "itho_preset_changed"
+      },
+      {
+        "title": {
+          "en": "Return temperature changed",
+          "nl": "Retourtemperatuur gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=floor_heating_monitor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Temperature",
+              "nl": "Temperatuur"
+            },
+            "example": 29.8
+          }
+        ],
+        "id": "return_temperature_changed"
+      }
+    ],
+    "conditions": [
+      {
+        "title": {
+          "en": "MQTT broker !{{is|is not}} connected",
+          "nl": "MQTT broker !{{is|is niet}} verbonden"
+        },
+        "id": "broker_connected"
+      },
+      {
+        "title": {
+          "en": "MQTT broker !{{is|is not}} disconnected",
+          "nl": "MQTT broker !{{is|is niet}} niet verbonden"
+        },
+        "id": "broker_disconnected"
+      },
+      {
+        "title": {
+          "en": "Delta T !{{is|is not}} ...",
+          "nl": "Delta T !{{is|is niet}} ..."
+        },
+        "titleFormatted": {
+          "en": "Delta T !{{is|is not}} [[operator]] [[value]]°C",
+          "nl": "Delta T !{{is|is niet}} [[operator]] [[value]]°C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=floor_heating_monitor"
+          },
+          {
+            "type": "dropdown",
+            "name": "operator",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk aan"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "hoger dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "hoger dan of gelijk aan"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "value",
+            "placeholder": {
+              "en": "Delta T",
+              "nl": "Delta T"
+            }
+          }
+        ],
+        "id": "floor_heating_delta_t_compare"
+      },
+      {
+        "title": {
+          "en": "Flow temperature !{{is|is not}} ...",
+          "nl": "Aanvoertemperatuur !{{is|is niet}} ..."
+        },
+        "titleFormatted": {
+          "en": "Flow temperature !{{is|is not}} [[operator]] [[value]]°C",
+          "nl": "Aanvoertemperatuur !{{is|is niet}} [[operator]] [[value]]°C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=floor_heating_monitor"
+          },
+          {
+            "type": "dropdown",
+            "name": "operator",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk aan"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "hoger dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "hoger dan of gelijk aan"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "value",
+            "placeholder": {
+              "en": "Temperature",
+              "nl": "Temperatuur"
+            }
+          }
+        ],
+        "id": "floor_heating_flow_temp_compare"
+      },
+      {
+        "title": {
+          "en": "Return temperature !{{is|is not}} ...",
+          "nl": "Retourtemperatuur !{{is|is niet}} ..."
+        },
+        "titleFormatted": {
+          "en": "Return temperature !{{is|is not}} [[operator]] [[value]]°C",
+          "nl": "Retourtemperatuur !{{is|is niet}} [[operator]] [[value]]°C"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=floor_heating_monitor"
+          },
+          {
+            "type": "dropdown",
+            "name": "operator",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk aan"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "hoger dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "hoger dan of gelijk aan"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "value",
+            "placeholder": {
+              "en": "Temperature",
+              "nl": "Temperatuur"
+            }
+          }
+        ],
+        "id": "floor_heating_return_temp_compare"
+      },
+      {
+        "title": {
+          "en": "Ground level !{{is|is not}} ...",
+          "nl": "Grondniveau !{{is|is niet}} ..."
+        },
+        "titleFormatted": {
+          "en": "Ground level !{{is|is not}} [[operator]] [[value]]",
+          "nl": "Grondniveau !{{is|is niet}} [[operator]] [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=ground_level_monitor"
+          },
+          {
+            "type": "dropdown",
+            "name": "operator",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk aan"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "hoger dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "hoger dan of gelijk aan"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "value",
+            "placeholder": {
+              "en": "Level",
+              "nl": "Niveau"
+            }
+          }
+        ],
+        "id": "ground_level_compare"
+      },
+      {
+        "title": {
+          "en": "Fan speed !{{is|is not}} ...",
+          "nl": "Ventilatorsnelheid !{{is|is niet}} ..."
+        },
+        "titleFormatted": {
+          "en": "Fan speed !{{is|is not}} [[operator]] [[value]] rpm",
+          "nl": "Ventilatorsnelheid !{{is|is niet}} [[operator]] [[value]] rpm"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "dropdown",
+            "name": "operator",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk aan"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "hoger dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "hoger dan of gelijk aan"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "value",
+            "placeholder": {
+              "en": "Speed (rpm)",
+              "nl": "Snelheid (rpm)"
+            }
+          }
+        ],
+        "id": "itho_fan_speed_compare"
+      },
+      {
+        "title": {
+          "en": "Device !{{is|is not}} online",
+          "nl": "Apparaat !{{is|is niet}} online"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          }
+        ],
+        "id": "itho_is_online"
+      },
+      {
+        "title": {
+          "en": "Fan preset !{{is|is not}} ...",
+          "nl": "Ventilator preset !{{is|is niet}} ..."
+        },
+        "titleFormatted": {
+          "en": "Fan preset !{{is|is not}} [[preset]]",
+          "nl": "Ventilator preset !{{is|is niet}} [[preset]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "dropdown",
+            "name": "preset",
+            "values": [
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "nl": "Laag"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "nl": "Middel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "nl": "Hoog"
+                }
+              },
+              {
+                "id": "timer1",
+                "label": {
+                  "en": "Timer 1",
+                  "nl": "Timer 1"
+                }
+              },
+              {
+                "id": "timer2",
+                "label": {
+                  "en": "Timer 2",
+                  "nl": "Timer 2"
+                }
+              },
+              {
+                "id": "timer3",
+                "label": {
+                  "en": "Timer 3",
+                  "nl": "Timer 3"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "itho_preset_equals"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Clear command queue",
+          "nl": "Wis commando wachtrij"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          }
+        ],
+        "id": "itho_clear_queue"
+      },
+      {
+        "title": {
+          "en": "Set fan speed",
+          "nl": "Stel ventilatorsnelheid in"
+        },
+        "titleFormatted": {
+          "en": "Set fan speed to [[speed]] rpm",
+          "nl": "Stel ventilatorsnelheid in op [[speed]] rpm"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "number",
+            "name": "speed",
+            "min": 0,
+            "max": 3000,
+            "placeholder": {
+              "en": "Speed (rpm)",
+              "nl": "Snelheid (rpm)"
+            }
+          }
+        ],
+        "id": "itho_set_fan_speed"
+      },
+      {
+        "title": {
+          "en": "Set fan speed with timer",
+          "nl": "Stel ventilatorsnelheid in met timer"
+        },
+        "titleFormatted": {
+          "en": "Set fan speed to [[speed]] rpm for [[timer]] minutes",
+          "nl": "Stel ventilatorsnelheid in op [[speed]] rpm voor [[timer]] minuten"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "number",
+            "name": "speed",
+            "min": 0,
+            "max": 3000,
+            "placeholder": {
+              "en": "Speed (rpm)",
+              "nl": "Snelheid (rpm)"
+            }
+          },
+          {
+            "type": "number",
+            "name": "timer",
+            "min": 1,
+            "max": 1440,
+            "placeholder": {
+              "en": "Minutes",
+              "nl": "Minuten"
+            }
+          }
+        ],
+        "id": "itho_set_fan_speed_timer"
+      },
+      {
+        "title": {
+          "en": "Set fan preset",
+          "nl": "Stel ventilator preset in"
+        },
+        "titleFormatted": {
+          "en": "Set fan preset to [[preset]]",
+          "nl": "Stel ventilator preset in op [[preset]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "dropdown",
+            "name": "preset",
+            "values": [
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "nl": "Laag"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "nl": "Middel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "nl": "Hoog"
+                }
+              },
+              {
+                "id": "timer1",
+                "label": {
+                  "en": "Timer 1",
+                  "nl": "Timer 1"
+                }
+              },
+              {
+                "id": "timer2",
+                "label": {
+                  "en": "Timer 2",
+                  "nl": "Timer 2"
+                }
+              },
+              {
+                "id": "timer3",
+                "label": {
+                  "en": "Timer 3",
+                  "nl": "Timer 3"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "itho_set_preset"
+      },
+      {
+        "title": {
+          "en": "Send virtual remote command",
+          "nl": "Stuur virtuele afstandsbediening commando"
+        },
+        "titleFormatted": {
+          "en": "Send virtual remote command [[command]]",
+          "nl": "Stuur virtuele afstandsbediening commando [[command]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "dropdown",
+            "name": "command",
+            "values": [
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "nl": "Laag"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "nl": "Middel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "nl": "Hoog"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "itho_virtual_remote"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Custom MQTT Sensor",
+        "nl": "Aangepaste MQTT Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/custom_mqtt_sensor/assets/images/small.png",
+        "large": "/drivers/custom_mqtt_sensor/assets/images/large.png",
+        "xlarge": "/drivers/custom_mqtt_sensor/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT Settings",
+            "nl": "MQTT Instellingen"
+          },
+          "children": [
+            {
+              "id": "mqtt_topic",
+              "type": "text",
+              "label": {
+                "en": "MQTT Topic",
+                "nl": "MQTT Onderwerp"
+              },
+              "value": "",
+              "hint": {
+                "en": "The MQTT topic to subscribe to",
+                "nl": "Het MQTT onderwerp om te abonneren"
+              }
+            },
+            {
+              "id": "payload_type",
+              "type": "dropdown",
+              "label": {
+                "en": "Payload Type",
+                "nl": "Payload Type"
+              },
+              "value": "number",
+              "values": [
+                {
+                  "id": "number",
+                  "label": {
+                    "en": "Single Number",
+                    "nl": "Enkel Getal"
+                  }
+                },
+                {
+                  "id": "json_object",
+                  "label": {
+                    "en": "JSON Object",
+                    "nl": "JSON Object"
+                  }
+                },
+                {
+                  "id": "json_array",
+                  "label": {
+                    "en": "JSON Array",
+                    "nl": "JSON Array"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "id": "custom_mqtt_sensor"
+    },
+    {
+      "name": {
+        "en": "Floor Heating Monitor",
+        "nl": "Vloerverwarming Monitor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature.flow",
+        "measure_temperature.return",
+        "measure_temperature.delta"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature.flow": {
+          "title": {
+            "en": "Flow Temperature (In)",
+            "nl": "Aanvoertemperatuur (In)"
+          }
+        },
+        "measure_temperature.return": {
+          "title": {
+            "en": "Return Temperature (Out)",
+            "nl": "Retourtemperatuur (Uit)"
+          }
+        },
+        "measure_temperature.delta": {
+          "title": {
+            "en": "Delta T (Δt)",
+            "nl": "Delta T (Δt)"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/floor_heating_monitor/assets/images/small.png",
+        "large": "/drivers/floor_heating_monitor/assets/images/large.png",
+        "xlarge": "/drivers/floor_heating_monitor/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "device_settings"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT Settings",
+            "nl": "MQTT Instellingen"
+          },
+          "children": [
+            {
+              "id": "mqtt_topic",
+              "type": "text",
+              "label": {
+                "en": "MQTT Topic",
+                "nl": "MQTT Onderwerp"
+              },
+              "value": "heating/floor1/status",
+              "hint": {
+                "en": "The MQTT topic to subscribe to for floor heating data",
+                "nl": "Het MQTT onderwerp om te abonneren voor vloerverwarmingsgegevens"
+              }
+            }
+          ]
+        }
+      ],
+      "id": "floor_heating_monitor"
+    },
+    {
+      "name": {
+        "en": "Ground Level Monitor",
+        "nl": "Grondniveau Monitor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "ground_level"
+      ],
+      "capabilitiesOptions": {
+        "ground_level": {
+          "title": {
+            "en": "Ground Level",
+            "nl": "Grondniveau"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/ground_level_monitor/assets/images/small.png",
+        "large": "/drivers/ground_level_monitor/assets/images/large.png",
+        "xlarge": "/drivers/ground_level_monitor/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "device_settings"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT Settings",
+            "nl": "MQTT Instellingen"
+          },
+          "children": [
+            {
+              "id": "mqtt_topic",
+              "type": "text",
+              "label": {
+                "en": "MQTT Topic",
+                "nl": "MQTT Onderwerp"
+              },
+              "value": "sensor/crawlSpaceHeight",
+              "hint": {
+                "en": "The MQTT topic to subscribe to for ground level data",
+                "nl": "Het MQTT onderwerp om te abonneren voor grondniveaugegevens"
+              }
+            },
+            {
+              "id": "unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": "cm",
+              "hint": {
+                "en": "Measurement unit (e.g., cm, m)",
+                "nl": "Meeteenheid (bijv. cm, m)"
+              }
+            },
+            {
+              "id": "alarm_threshold",
+              "type": "number",
+              "label": {
+                "en": "Alarm Threshold (optional)",
+                "nl": "Alarmdrempel (optioneel)"
+              },
+              "value": 0,
+              "hint": {
+                "en": "Trigger alarm when level exceeds this value (0 = disabled)",
+                "nl": "Activeer alarm wanneer niveau deze waarde overschrijdt (0 = uitgeschakeld)"
+              }
+            }
+          ]
+        }
+      ],
+      "id": "ground_level_monitor"
+    },
+    {
+      "name": {
+        "en": "NRG-Watch Itho CVE",
+        "nl": "NRG-Watch Itho CVE"
+      },
+      "class": "fan",
+      "capabilities": [
+        "itho_fan_speed",
+        "itho_fan_preset",
+        "measure_temperature.indoor",
+        "measure_humidity.indoor",
+        "measure_temperature.supply",
+        "measure_temperature.exhaust",
+        "itho_online"
+      ],
+      "capabilitiesOptions": {
+        "itho_fan_speed": {
+          "title": {
+            "en": "Fan Speed",
+            "nl": "Ventilatorsnelheid"
+          }
+        },
+        "itho_fan_preset": {
+          "title": {
+            "en": "Preset",
+            "nl": "Preset"
+          }
+        },
+        "measure_temperature.indoor": {
+          "title": {
+            "en": "Indoor Temperature",
+            "nl": "Binnentemperatuur"
+          }
+        },
+        "measure_humidity.indoor": {
+          "title": {
+            "en": "Humidity",
+            "nl": "Luchtvochtigheid"
+          }
+        },
+        "measure_temperature.supply": {
+          "title": {
+            "en": "Supply Temperature",
+            "nl": "Aanvoertemperatuur"
+          }
+        },
+        "measure_temperature.exhaust": {
+          "title": {
+            "en": "Exhaust Temperature",
+            "nl": "Afvoertemperatuur"
+          }
+        },
+        "itho_online": {
+          "title": {
+            "en": "Online",
+            "nl": "Online"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/nrgwatch_itho_cve/assets/images/small.png",
+        "large": "/drivers/nrgwatch_itho_cve/assets/images/large.png",
+        "xlarge": "/drivers/nrgwatch_itho_cve/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "device_settings"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT Topics",
+            "nl": "MQTT Onderwerpen"
+          },
+          "children": [
+            {
+              "id": "topic_status",
+              "type": "text",
+              "label": {
+                "en": "Status Topic",
+                "nl": "Status Onderwerp"
+              },
+              "value": "itho/ithostatus",
+              "hint": {
+                "en": "MQTT topic for status updates",
+                "nl": "MQTT onderwerp voor status updates"
+              }
+            },
+            {
+              "id": "topic_lastcmd",
+              "type": "text",
+              "label": {
+                "en": "Last Command Topic",
+                "nl": "Laatste Commando Onderwerp"
+              },
+              "value": "itho/lastcmd",
+              "hint": {
+                "en": "MQTT topic for last command",
+                "nl": "MQTT onderwerp voor laatste commando"
+              }
+            },
+            {
+              "id": "topic_state",
+              "type": "text",
+              "label": {
+                "en": "State Topic",
+                "nl": "Status Onderwerp"
+              },
+              "value": "itho/state",
+              "hint": {
+                "en": "MQTT topic for current state",
+                "nl": "MQTT onderwerp voor huidige status"
+              }
+            },
+            {
+              "id": "topic_lwt",
+              "type": "text",
+              "label": {
+                "en": "LWT Topic",
+                "nl": "LWT Onderwerp"
+              },
+              "value": "itho/LWT",
+              "hint": {
+                "en": "MQTT topic for Last Will and Testament",
+                "nl": "MQTT onderwerp voor Last Will and Testament"
+              }
+            },
+            {
+              "id": "topic_cmd",
+              "type": "text",
+              "label": {
+                "en": "Command Topic",
+                "nl": "Commando Onderwerp"
+              },
+              "value": "itho/cmd",
+              "hint": {
+                "en": "MQTT topic for sending commands",
+                "nl": "MQTT onderwerp voor het verzenden van commando's"
+              }
+            }
+          ]
+        }
+      ],
+      "id": "nrgwatch_itho_cve"
+    }
+  ],
+  "capabilities": {
+    "ground_level": {
+      "type": "number",
+      "title": {
+        "en": "Ground Level",
+        "nl": "Grondniveau"
+      },
+      "units": {
+        "en": "cm"
+      },
+      "decimals": 1,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "itho_fan_preset": {
+      "type": "string",
+      "title": {
+        "en": "Fan Preset",
+        "nl": "Ventilator Preset"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "low",
+          "title": {
+            "en": "Low",
+            "nl": "Laag"
+          }
+        },
+        {
+          "id": "medium",
+          "title": {
+            "en": "Medium",
+            "nl": "Middel"
+          }
+        },
+        {
+          "id": "high",
+          "title": {
+            "en": "High",
+            "nl": "Hoog"
+          }
+        },
+        {
+          "id": "timer1",
+          "title": {
+            "en": "Timer 1",
+            "nl": "Timer 1"
+          }
+        },
+        {
+          "id": "timer2",
+          "title": {
+            "en": "Timer 2",
+            "nl": "Timer 2"
+          }
+        },
+        {
+          "id": "timer3",
+          "title": {
+            "en": "Timer 3",
+            "nl": "Timer 3"
+          }
+        }
+      ],
+      "icon": "/assets/icons/on-off-button.svg"
+    },
+    "itho_fan_speed": {
+      "type": "number",
+      "title": {
+        "en": "Fan Speed",
+        "nl": "Ventilatorsnelheid"
+      },
+      "units": {
+        "en": "rpm"
+      },
+      "decimals": 0,
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/performance.svg"
+    },
+    "itho_online": {
+      "type": "boolean",
+      "title": {
+        "en": "Online",
+        "nl": "Online"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/on-off-button.svg"
+    }
   }
 }

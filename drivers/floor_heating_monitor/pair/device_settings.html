@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="/homey.js" data-origin="pairing"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 20px;
+        }
+        .field-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .help-text {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 data-i18n="pair.device_settings.title">Configure Floor Heating Monitor</h1>
+    
+    <div class="field-group">
+        <label for="device_name" data-i18n="pair.device_settings.name">Device Name</label>
+        <input type="text" id="device_name" placeholder="Floor Heating Monitor" value="Floor Heating Monitor">
+        <p class="help-text" data-i18n="pair.device_settings.name_hint">Enter a name for this device</p>
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_topic" data-i18n="pair.device_settings.topic">MQTT Topic</label>
+        <input type="text" id="mqtt_topic" placeholder="heating/floor1/status" value="heating/floor1/status">
+        <p class="help-text" data-i18n="pair.device_settings.topic_hint">The MQTT topic to subscribe to for floor heating data</p>
+    </div>
+
+    <script>
+        function onHomeyReady(Homey) {
+            Homey.ready();
+
+            Homey.on('continue', function() {
+                const deviceData = {
+                    name: document.getElementById('device_name').value || 'Floor Heating Monitor',
+                    mqtt_topic: document.getElementById('mqtt_topic').value || 'heating/floor1/status'
+                };
+
+                Homey.emit('device_settings', deviceData);
+            });
+        }
+    </script>
+</body>
+</html>

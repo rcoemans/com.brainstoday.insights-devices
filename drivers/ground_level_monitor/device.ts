@@ -74,9 +74,9 @@ module.exports = class GroundLevelMonitorDevice extends Homey.Device {
       }
 
       const roundedLevel = Number(level.toFixed(1));
-      const oldLevel = this.getCapabilityValue('measure_level.ground');
+      const oldLevel = this.getCapabilityValue('ground_level');
 
-      this.setCapabilityValue('measure_level.ground', roundedLevel).catch(this.error);
+      this.setCapabilityValue('ground_level', roundedLevel).catch(this.error);
 
       if (oldLevel !== roundedLevel) {
         this.homey.flow.getDeviceTriggerCard('ground_level_changed')

@@ -9,7 +9,6 @@
     "itho_fan_preset",
     "measure_temperature.indoor",
     "measure_humidity.indoor",
-    "measure_air_quality",
     "measure_temperature.supply",
     "measure_temperature.exhaust",
     "itho_online"
@@ -37,12 +36,6 @@
       "title": {
         "en": "Humidity",
         "nl": "Luchtvochtigheid"
-      }
-    },
-    "measure_air_quality": {
-      "title": {
-        "en": "Air Quality",
-        "nl": "Luchtkwaliteit"
       }
     },
     "measure_temperature.supply": {
