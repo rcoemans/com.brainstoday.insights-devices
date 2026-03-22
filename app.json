@@ -50,6 +50,152 @@
     "triggers": [
       {
         "title": {
+          "en": "Current app changed",
+          "nl": "Huidige app gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "app",
+            "type": "string",
+            "title": {
+              "en": "App name",
+              "nl": "App naam"
+            }
+          }
+        ],
+        "id": "awtrix_app_changed"
+      },
+      {
+        "title": {
+          "en": "Battery level changed",
+          "nl": "Batterijniveau gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_battery_changed"
+      },
+      {
+        "title": {
+          "en": "Brightness changed",
+          "nl": "Helderheid gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_brightness_changed"
+      },
+      {
+        "title": {
+          "en": "Humidity changed",
+          "nl": "Luchtvochtigheid gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_humidity_changed"
+      },
+      {
+        "title": {
+          "en": "Ambient light changed",
+          "nl": "Omgevingslicht gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_luminance_changed"
+      },
+      {
+        "title": {
+          "en": "Message count changed",
+          "nl": "Aantal berichten gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_messages_changed"
+      },
+      {
+        "title": {
+          "en": "Device online status changed",
+          "nl": "Apparaat online status gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "online",
+            "type": "boolean",
+            "title": {
+              "en": "Online",
+              "nl": "Online"
+            }
+          }
+        ],
+        "id": "awtrix_online_changed"
+      },
+      {
+        "title": {
+          "en": "WiFi signal changed",
+          "nl": "WiFi signaal gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_signal_changed"
+      },
+      {
+        "title": {
+          "en": "Temperature changed",
+          "nl": "Temperatuur gewijzigd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_temperature_changed"
+      },
+      {
+        "title": {
           "en": "MQTT broker connected",
           "nl": "MQTT broker verbonden"
         },
@@ -307,6 +453,140 @@
       }
     ],
     "conditions": [
+      {
+        "title": {
+          "en": "Humidity !{{is|is not}} $operator $value",
+          "nl": "Luchtvochtigheid !{{is|is niet}} $operator $value"
+        },
+        "titleFormatted": {
+          "en": "Humidity !{{is|is not}} [[operator]] [[value]]",
+          "nl": "Luchtvochtigheid !{{is|is niet}} [[operator]] [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          },
+          {
+            "name": "operator",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "groter dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "groter dan of gelijk"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ],
+        "id": "awtrix_humidity_compare"
+      },
+      {
+        "title": {
+          "en": "Device !{{is|is not}} online",
+          "nl": "Apparaat !{{is|is niet}} online"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_is_online"
+      },
+      {
+        "title": {
+          "en": "Temperature !{{is|is not}} $operator $value",
+          "nl": "Temperatuur !{{is|is niet}} $operator $value"
+        },
+        "titleFormatted": {
+          "en": "Temperature !{{is|is not}} [[operator]] [[value]]",
+          "nl": "Temperatuur !{{is|is niet}} [[operator]] [[value]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          },
+          {
+            "name": "operator",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "lt",
+                "label": {
+                  "en": "lower than",
+                  "nl": "lager dan"
+                }
+              },
+              {
+                "id": "lte",
+                "label": {
+                  "en": "lower than or equal",
+                  "nl": "lager dan of gelijk"
+                }
+              },
+              {
+                "id": "gt",
+                "label": {
+                  "en": "greater than",
+                  "nl": "groter dan"
+                }
+              },
+              {
+                "id": "gte",
+                "label": {
+                  "en": "greater than or equal",
+                  "nl": "groter dan of gelijk"
+                }
+              }
+            ]
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "Value",
+              "nl": "Waarde"
+            }
+          }
+        ],
+        "id": "awtrix_temperature_compare"
+      },
       {
         "title": {
           "en": "MQTT broker !{{is|is not}} connected",
@@ -705,6 +985,190 @@
     "actions": [
       {
         "title": {
+          "en": "Clear display",
+          "nl": "Wis scherm"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          }
+        ],
+        "id": "awtrix_clear_screen"
+      },
+      {
+        "title": {
+          "en": "Remove app",
+          "nl": "Verwijder app"
+        },
+        "titleFormatted": {
+          "en": "Remove app [[name]]",
+          "nl": "Verwijder app [[name]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "App name",
+              "nl": "App naam"
+            }
+          }
+        ],
+        "id": "awtrix_remove_app"
+      },
+      {
+        "title": {
+          "en": "Show custom app",
+          "nl": "Toon aangepaste app"
+        },
+        "titleFormatted": {
+          "en": "Show app [[name]] with text [[text]] [[color]] [[icon]] [[lifetime]]",
+          "nl": "Toon app [[name]] met tekst [[text]] [[color]] [[icon]] [[lifetime]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "placeholder": {
+              "en": "App name",
+              "nl": "App naam"
+            }
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Display text",
+              "nl": "Weergave tekst"
+            }
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "placeholder": {
+              "en": "Color (optional, e.g. #00AEEF)",
+              "nl": "Kleur (optioneel, bijv. #00AEEF)"
+            },
+            "required": false
+          },
+          {
+            "name": "icon",
+            "type": "text",
+            "placeholder": {
+              "en": "Icon ID (optional)",
+              "nl": "Icoon ID (optioneel)"
+            },
+            "required": false
+          },
+          {
+            "name": "lifetime",
+            "type": "number",
+            "placeholder": {
+              "en": "Lifetime in seconds (optional)",
+              "nl": "Levensduur in seconden (optioneel)"
+            },
+            "required": false
+          }
+        ],
+        "id": "awtrix_send_custom_app"
+      },
+      {
+        "title": {
+          "en": "Show notification",
+          "nl": "Toon notificatie"
+        },
+        "titleFormatted": {
+          "en": "Show notification [[text]] [[color]] [[duration]] [[icon]]",
+          "nl": "Toon notificatie [[text]] [[color]] [[duration]] [[icon]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          },
+          {
+            "name": "text",
+            "type": "text",
+            "placeholder": {
+              "en": "Message text",
+              "nl": "Bericht tekst"
+            }
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "placeholder": {
+              "en": "Color (optional, e.g. #00FF00)",
+              "nl": "Kleur (optioneel, bijv. #00FF00)"
+            },
+            "required": false
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "placeholder": {
+              "en": "Duration in seconds (optional)",
+              "nl": "Duur in seconden (optioneel)"
+            },
+            "required": false
+          },
+          {
+            "name": "icon",
+            "type": "text",
+            "placeholder": {
+              "en": "Icon ID (optional)",
+              "nl": "Icoon ID (optioneel)"
+            },
+            "required": false
+          }
+        ],
+        "id": "awtrix_send_notification"
+      },
+      {
+        "title": {
+          "en": "Set brightness",
+          "nl": "Stel helderheid in"
+        },
+        "titleFormatted": {
+          "en": "Set brightness to [[brightness]]%",
+          "nl": "Stel helderheid in op [[brightness]]%"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=awtrix_3"
+          },
+          {
+            "name": "brightness",
+            "type": "range",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "%",
+            "placeholder": {
+              "en": "Brightness",
+              "nl": "Helderheid"
+            }
+          }
+        ],
+        "id": "awtrix_set_brightness"
+      },
+      {
+        "title": {
           "en": "Clear command queue",
           "nl": "Wis commando wachtrij"
         },
@@ -897,6 +1361,163 @@
     ]
   },
   "drivers": [
+    {
+      "name": {
+        "en": "Awtrix 3",
+        "nl": "Awtrix 3"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature",
+        "measure_humidity",
+        "awtrix_brightness",
+        "measure_luminance",
+        "awtrix_wifi_signal",
+        "measure_battery",
+        "awtrix_uptime",
+        "awtrix_messages",
+        "awtrix_app",
+        "awtrix_version",
+        "awtrix_ip",
+        "awtrix_online"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "title": {
+            "en": "Temperature",
+            "nl": "Temperatuur"
+          }
+        },
+        "measure_humidity": {
+          "title": {
+            "en": "Humidity",
+            "nl": "Luchtvochtigheid"
+          }
+        },
+        "measure_luminance": {
+          "title": {
+            "en": "Ambient Light",
+            "nl": "Omgevingslicht"
+          }
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery",
+            "nl": "Batterij"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "images": {
+        "small": "/drivers/awtrix_3/assets/images/small.png",
+        "large": "/drivers/awtrix_3/assets/images/large.png",
+        "xlarge": "/drivers/awtrix_3/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Information",
+            "nl": "Informatie"
+          },
+          "children": [
+            {
+              "id": "info_text",
+              "type": "label",
+              "label": {
+                "en": "For more information about Awtrix 3, visit: https://blueforcer.github.io/awtrix3/#/",
+                "nl": "Voor meer informatie over Awtrix 3, bezoek: https://blueforcer.github.io/awtrix3/#/"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT Topics",
+            "nl": "MQTT Onderwerpen"
+          },
+          "children": [
+            {
+              "id": "base_topic",
+              "type": "text",
+              "label": {
+                "en": "Base Topic",
+                "nl": "Basis Onderwerp"
+              },
+              "value": "awtrix",
+              "hint": {
+                "en": "The base MQTT topic for your Awtrix device (e.g., awtrix_55f85c)",
+                "nl": "Het basis MQTT onderwerp voor uw Awtrix apparaat (bijv. awtrix_55f85c)"
+              }
+            },
+            {
+              "id": "stats_topic",
+              "type": "text",
+              "label": {
+                "en": "Status Topic",
+                "nl": "Status Onderwerp"
+              },
+              "value": "stats",
+              "hint": {
+                "en": "Relative to base topic (default: stats). Full topic will be <base>/stats",
+                "nl": "Relatief aan basis onderwerp (standaard: stats). Volledig onderwerp wordt <basis>/stats"
+              }
+            },
+            {
+              "id": "custom_topic",
+              "type": "text",
+              "label": {
+                "en": "Custom App Topic",
+                "nl": "Aangepaste App Onderwerp"
+              },
+              "value": "custom",
+              "hint": {
+                "en": "Relative to base topic (default: custom). Full topic will be <base>/custom",
+                "nl": "Relatief aan basis onderwerp (standaard: custom). Volledig onderwerp wordt <basis>/custom"
+              }
+            },
+            {
+              "id": "notify_topic",
+              "type": "text",
+              "label": {
+                "en": "Notify Topic",
+                "nl": "Notificatie Onderwerp"
+              },
+              "value": "notify",
+              "hint": {
+                "en": "Relative to base topic (default: notify). Full topic will be <base>/notify",
+                "nl": "Relatief aan basis onderwerp (standaard: notify). Volledig onderwerp wordt <basis>/notify"
+              }
+            }
+          ]
+        }
+      ],
+      "id": "awtrix_3"
+    },
     {
       "name": {
         "en": "Custom MQTT Sensor",
@@ -1757,6 +2378,115 @@
     }
   ],
   "capabilities": {
+    "awtrix_app": {
+      "type": "string",
+      "title": {
+        "en": "Current App",
+        "nl": "Huidige App"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "awtrix_brightness": {
+      "type": "number",
+      "title": {
+        "en": "Brightness",
+        "nl": "Helderheid"
+      },
+      "units": {
+        "en": "%",
+        "nl": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "awtrix_ip": {
+      "type": "string",
+      "title": {
+        "en": "IP Address",
+        "nl": "IP Adres"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "awtrix_messages": {
+      "type": "number",
+      "title": {
+        "en": "Messages",
+        "nl": "Berichten"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "awtrix_online": {
+      "type": "boolean",
+      "title": {
+        "en": "Online",
+        "nl": "Online"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "awtrix_uptime": {
+      "type": "number",
+      "title": {
+        "en": "Uptime",
+        "nl": "Uptime"
+      },
+      "units": {
+        "en": "s",
+        "nl": "s"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true
+    },
+    "awtrix_version": {
+      "type": "string",
+      "title": {
+        "en": "Firmware Version",
+        "nl": "Firmware Versie"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "awtrix_wifi_signal": {
+      "type": "number",
+      "title": {
+        "en": "WiFi Signal",
+        "nl": "WiFi Signaal"
+      },
+      "units": {
+        "en": "dBm",
+        "nl": "dBm"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
     "custom_calc_1": {
       "type": "number",
       "title": {

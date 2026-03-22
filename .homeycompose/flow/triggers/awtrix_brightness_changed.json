@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Brightness changed",
+    "nl": "Helderheid gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

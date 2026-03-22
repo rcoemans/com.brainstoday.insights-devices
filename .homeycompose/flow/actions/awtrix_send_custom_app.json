@@ -1,0 +1,60 @@
+{
+  "title": {
+    "en": "Show custom app",
+    "nl": "Toon aangepaste app"
+  },
+  "titleFormatted": {
+    "en": "Show app [[name]] with text [[text]] [[color]] [[icon]] [[lifetime]]",
+    "nl": "Toon app [[name]] met tekst [[text]] [[color]] [[icon]] [[lifetime]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "placeholder": {
+        "en": "App name",
+        "nl": "App naam"
+      }
+    },
+    {
+      "name": "text",
+      "type": "text",
+      "placeholder": {
+        "en": "Display text",
+        "nl": "Weergave tekst"
+      }
+    },
+    {
+      "name": "color",
+      "type": "text",
+      "placeholder": {
+        "en": "Color (optional, e.g. #00AEEF)",
+        "nl": "Kleur (optioneel, bijv. #00AEEF)"
+      },
+      "required": false
+    },
+    {
+      "name": "icon",
+      "type": "text",
+      "placeholder": {
+        "en": "Icon ID (optional)",
+        "nl": "Icoon ID (optioneel)"
+      },
+      "required": false
+    },
+    {
+      "name": "lifetime",
+      "type": "number",
+      "placeholder": {
+        "en": "Lifetime in seconds (optional)",
+        "nl": "Levensduur in seconden (optioneel)"
+      },
+      "required": false
+    }
+  ]
+}

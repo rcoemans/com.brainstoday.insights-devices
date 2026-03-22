@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Temperature changed",
+    "nl": "Temperatuur gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

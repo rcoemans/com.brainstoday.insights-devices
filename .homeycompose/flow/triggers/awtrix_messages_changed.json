@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Message count changed",
+    "nl": "Aantal berichten gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

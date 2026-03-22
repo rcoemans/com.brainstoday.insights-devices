@@ -1,0 +1,23 @@
+{
+  "title": {
+    "en": "Device online status changed",
+    "nl": "Apparaat online status gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "online",
+      "type": "boolean",
+      "title": {
+        "en": "Online",
+        "nl": "Online"
+      }
+    }
+  ]
+}

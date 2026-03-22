@@ -1,0 +1,13 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Messages",
+    "nl": "Berichten"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg",
+  "insights": true,
+  "decimals": 0
+}

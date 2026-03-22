@@ -1,0 +1,52 @@
+{
+  "title": {
+    "en": "Show notification",
+    "nl": "Toon notificatie"
+  },
+  "titleFormatted": {
+    "en": "Show notification [[text]] [[color]] [[duration]] [[icon]]",
+    "nl": "Toon notificatie [[text]] [[color]] [[duration]] [[icon]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    },
+    {
+      "name": "text",
+      "type": "text",
+      "placeholder": {
+        "en": "Message text",
+        "nl": "Bericht tekst"
+      }
+    },
+    {
+      "name": "color",
+      "type": "text",
+      "placeholder": {
+        "en": "Color (optional, e.g. #00FF00)",
+        "nl": "Kleur (optioneel, bijv. #00FF00)"
+      },
+      "required": false
+    },
+    {
+      "name": "duration",
+      "type": "number",
+      "placeholder": {
+        "en": "Duration in seconds (optional)",
+        "nl": "Duur in seconden (optioneel)"
+      },
+      "required": false
+    },
+    {
+      "name": "icon",
+      "type": "text",
+      "placeholder": {
+        "en": "Icon ID (optional)",
+        "nl": "Icoon ID (optioneel)"
+      },
+      "required": false
+    }
+  ]
+}

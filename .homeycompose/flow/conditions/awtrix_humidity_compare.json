@@ -1,0 +1,32 @@
+{
+  "title": {
+    "en": "Humidity !{{is|is not}} $operator $value",
+    "nl": "Luchtvochtigheid !{{is|is niet}} $operator $value"
+  },
+  "titleFormatted": {
+    "en": "Humidity !{{is|is not}} [[operator]] [[value]]",
+    "nl": "Luchtvochtigheid !{{is|is niet}} [[operator]] [[value]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    },
+    {
+      "name": "operator",
+      "type": "dropdown",
+      "values": [
+        { "id": "lt", "label": { "en": "lower than", "nl": "lager dan" } },
+        { "id": "lte", "label": { "en": "lower than or equal", "nl": "lager dan of gelijk" } },
+        { "id": "gt", "label": { "en": "greater than", "nl": "groter dan" } },
+        { "id": "gte", "label": { "en": "greater than or equal", "nl": "groter dan of gelijk" } }
+      ]
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "placeholder": { "en": "Value", "nl": "Waarde" }
+    }
+  ]
+}

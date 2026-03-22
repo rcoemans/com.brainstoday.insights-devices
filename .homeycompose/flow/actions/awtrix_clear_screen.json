@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Clear display",
+    "nl": "Wis scherm"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

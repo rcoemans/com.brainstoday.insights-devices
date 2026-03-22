@@ -1,0 +1,11 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Firmware Version",
+    "nl": "Firmware Versie"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

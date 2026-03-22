@@ -22,6 +22,7 @@ Homey app for creating **predefined and custom virtual measurement devices** tha
 | **Floor Heating Monitor** | Monitors underfloor heating with flow/return temperatures and Delta T calculation |
 | **Ground Level Monitor** | Tracks ground or water level for crawl spaces, tanks, or flood-prone areas |
 | **NRG-Watch Itho CVE** | Integrates Itho Daalderop CVE ventilation units via NRG-Watch MQTT add-on |
+| **Awtrix 3** | Integrates Awtrix 3 LED matrix display for monitoring and notifications |
 | **Custom MQTT Sensor** | Flexible device for custom MQTT payloads with mapping and calculations |
 
 ## Requirements
@@ -223,6 +224,79 @@ Integrates Itho Daalderop CVE ventilation units through the NRG-Watch MQTT add-o
 - Triggers: Fan speed/preset/sensor changes, online status changes
 - Conditions: Speed/temperature/humidity comparisons, preset checks, online status
 - Actions: Set fan speed, set fan speed with timer, set preset, send virtual remote commands, clear command queue
+
+---
+
+### Awtrix 3
+
+Integrates Awtrix 3 LED matrix display for monitoring device telemetry and displaying notifications and custom apps.
+
+**Capabilities:**
+- Temperature
+- Humidity
+- Brightness (%)
+- Ambient Light (lux)
+- WiFi Signal (dBm)
+- Battery Level (%)
+- Uptime (seconds)
+- Message Count
+- Current App
+- Firmware Version
+- IP Address
+- Online Status
+
+**How to Use:**
+
+1. **Add the device:**
+   - Go to Devices → Add Device → Insights Devices
+   - Select "Awtrix 3"
+   - Click "Add Device"
+
+2. **Configure MQTT topics:**
+   - Open device settings
+   - Set Base Topic (e.g., `awtrix_55f85c`)
+   - Optionally customize:
+     - Status Topic (default: `stats`)
+     - Custom App Topic (default: `custom`)
+     - Notify Topic (default: `notify`)
+   - Save settings
+
+3. **Monitor device status:**
+   - The device automatically subscribes to `<base>/stats`
+   - All sensor values are updated from incoming MQTT messages
+   - Use Insights to track temperature, humidity, brightness, etc.
+
+4. **Send notifications and apps:**
+   - Use flow cards to display messages on the Awtrix
+   - Show notifications with custom text, colors, and icons
+   - Create custom apps with persistent displays
+   - Control brightness and clear the screen
+
+**Expected MQTT Payload (stats):**
+```json
+{
+  "bat": 100,
+  "type": 0,
+  "lux": 26,
+  "bri": 63,
+  "temp": 19,
+  "hum": 32,
+  "uptime": 577,
+  "wifi_signal": -61,
+  "messages": 0,
+  "version": "0.98",
+  "app": "",
+  "ip_address": "192.168.1.123"
+}
+```
+
+**Flow Cards:**
+- Triggers: Temperature/humidity/brightness/light/signal/battery/messages/app changed, online status changed
+- Conditions: Temperature/humidity comparisons, device online status
+- Actions: Show notification, show custom app, remove app, clear display, set brightness
+
+**More Information:**
+For detailed Awtrix 3 documentation, visit: https://blueforcer.github.io/awtrix3/#/
 
 ---
 

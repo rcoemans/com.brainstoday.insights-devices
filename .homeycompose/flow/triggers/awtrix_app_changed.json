@@ -1,0 +1,23 @@
+{
+  "title": {
+    "en": "Current app changed",
+    "nl": "Huidige app gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "app",
+      "type": "string",
+      "title": {
+        "en": "App name",
+        "nl": "App naam"
+      }
+    }
+  ]
+}

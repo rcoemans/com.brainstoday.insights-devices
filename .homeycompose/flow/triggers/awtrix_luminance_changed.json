@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Ambient light changed",
+    "nl": "Omgevingslicht gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

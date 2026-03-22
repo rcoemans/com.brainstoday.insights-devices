@@ -1,0 +1,29 @@
+{
+  "title": {
+    "en": "Set brightness",
+    "nl": "Stel helderheid in"
+  },
+  "titleFormatted": {
+    "en": "Set brightness to [[brightness]]%",
+    "nl": "Stel helderheid in op [[brightness]]%"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    },
+    {
+      "name": "brightness",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "%",
+      "placeholder": {
+        "en": "Brightness",
+        "nl": "Helderheid"
+      }
+    }
+  ]
+}

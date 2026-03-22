@@ -1,0 +1,154 @@
+{
+  "name": {
+    "en": "Awtrix 3",
+    "nl": "Awtrix 3"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_temperature",
+    "measure_humidity",
+    "awtrix_brightness",
+    "measure_luminance",
+    "awtrix_wifi_signal",
+    "measure_battery",
+    "awtrix_uptime",
+    "awtrix_messages",
+    "awtrix_app",
+    "awtrix_version",
+    "awtrix_ip",
+    "awtrix_online"
+  ],
+  "capabilitiesOptions": {
+    "measure_temperature": {
+      "title": {
+        "en": "Temperature",
+        "nl": "Temperatuur"
+      }
+    },
+    "measure_humidity": {
+      "title": {
+        "en": "Humidity",
+        "nl": "Luchtvochtigheid"
+      }
+    },
+    "measure_luminance": {
+      "title": {
+        "en": "Ambient Light",
+        "nl": "Omgevingslicht"
+      }
+    },
+    "measure_battery": {
+      "title": {
+        "en": "Battery",
+        "nl": "Batterij"
+      }
+    }
+  },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "energy": {
+    "batteries": ["INTERNAL"]
+  },
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Information",
+        "nl": "Informatie"
+      },
+      "children": [
+        {
+          "id": "info_text",
+          "type": "label",
+          "label": {
+            "en": "For more information about Awtrix 3, visit: https://blueforcer.github.io/awtrix3/#/",
+            "nl": "Voor meer informatie over Awtrix 3, bezoek: https://blueforcer.github.io/awtrix3/#/"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "MQTT Topics",
+        "nl": "MQTT Onderwerpen"
+      },
+      "children": [
+        {
+          "id": "base_topic",
+          "type": "text",
+          "label": {
+            "en": "Base Topic",
+            "nl": "Basis Onderwerp"
+          },
+          "value": "awtrix",
+          "hint": {
+            "en": "The base MQTT topic for your Awtrix device (e.g., awtrix_55f85c)",
+            "nl": "Het basis MQTT onderwerp voor uw Awtrix apparaat (bijv. awtrix_55f85c)"
+          }
+        },
+        {
+          "id": "stats_topic",
+          "type": "text",
+          "label": {
+            "en": "Status Topic",
+            "nl": "Status Onderwerp"
+          },
+          "value": "stats",
+          "hint": {
+            "en": "Relative to base topic (default: stats). Full topic will be <base>/stats",
+            "nl": "Relatief aan basis onderwerp (standaard: stats). Volledig onderwerp wordt <basis>/stats"
+          }
+        },
+        {
+          "id": "custom_topic",
+          "type": "text",
+          "label": {
+            "en": "Custom App Topic",
+            "nl": "Aangepaste App Onderwerp"
+          },
+          "value": "custom",
+          "hint": {
+            "en": "Relative to base topic (default: custom). Full topic will be <base>/custom",
+            "nl": "Relatief aan basis onderwerp (standaard: custom). Volledig onderwerp wordt <basis>/custom"
+          }
+        },
+        {
+          "id": "notify_topic",
+          "type": "text",
+          "label": {
+            "en": "Notify Topic",
+            "nl": "Notificatie Onderwerp"
+          },
+          "value": "notify",
+          "hint": {
+            "en": "Relative to base topic (default: notify). Full topic will be <base>/notify",
+            "nl": "Relatief aan basis onderwerp (standaard: notify). Volledig onderwerp wordt <basis>/notify"
+          }
+        }
+      ]
+    }
+  ]
+}

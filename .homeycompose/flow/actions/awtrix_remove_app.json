@@ -1,0 +1,25 @@
+{
+  "title": {
+    "en": "Remove app",
+    "nl": "Verwijder app"
+  },
+  "titleFormatted": {
+    "en": "Remove app [[name]]",
+    "nl": "Verwijder app [[name]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "placeholder": {
+        "en": "App name",
+        "nl": "App naam"
+      }
+    }
+  ]
+}

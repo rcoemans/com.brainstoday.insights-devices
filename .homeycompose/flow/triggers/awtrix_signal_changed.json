@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "WiFi signal changed",
+    "nl": "WiFi signaal gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

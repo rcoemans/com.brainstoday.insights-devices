@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Humidity changed",
+    "nl": "Luchtvochtigheid gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

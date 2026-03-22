@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Uptime",
+    "nl": "Uptime"
+  },
+  "units": {
+    "en": "s",
+    "nl": "s"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg",
+  "insights": true
+}

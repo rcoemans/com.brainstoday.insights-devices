@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Battery level changed",
+    "nl": "Batterijniveau gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=awtrix_3"
+    }
+  ]
+}

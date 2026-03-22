@@ -1,0 +1,19 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Brightness",
+    "nl": "Helderheid"
+  },
+  "units": {
+    "en": "%",
+    "nl": "%"
+  },
+  "min": 0,
+  "max": 100,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg",
+  "insights": true,
+  "decimals": 0
+}
