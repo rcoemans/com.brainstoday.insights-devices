@@ -1,6 +1,6 @@
 # Insights Devices
 
-[![Homey App](https://img.shields.io/badge/Homey-App%20Store-00A94F?logo=homey)](https://homey.app/)
+[![Homey App](https://img.shields.io/badge/Homey-App%20Store-00A94F?logo=homey)](https://homey.app/en-nl/app/com.brainstoday.insights-devices/Insights-Devices/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 
 Homey app for creating **predefined and custom virtual measurement devices** that receive their data via **MQTT**. This app provides a single MQTT broker connection at app level and allows you to create multiple MQTT-driven devices with different capabilities.
