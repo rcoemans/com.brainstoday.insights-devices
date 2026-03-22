@@ -7,14 +7,14 @@ interface IthoStatusPayload {
   hum?: number;
   Temperature?: number;
   RelativeHumidity?: number;
+  ppmw?: number;
+  'Ventilation setpoint (%)'?: number;
+  'Fan setpoint (rpm)'?: number;
   'Fan speed (rpm)'?: number;
+  Error?: number;
+  'Total operation (hours)'?: number;
   supplyTemp?: number;
   exhaustTemp?: number;
-  RoomTemp?: number;
-  OutdoorTemp?: number;
-  Air_Quality?: number;
-  Highest_received_CO2_value?: number;
-  Highest_received_RH_value?: number;
 }
 
 module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
@@ -115,6 +115,18 @@ module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
         this.setCapabilityValue('measure_humidity.indoor', Number(hum.toFixed(1))).catch(this.error);
       }
 
+      if (data.ppmw !== undefined) {
+        this.setCapabilityValue('itho_ppmw', data.ppmw).catch(this.error);
+      }
+
+      if (data['Ventilation setpoint (%)'] !== undefined) {
+        this.setCapabilityValue('itho_ventilation_setpoint', data['Ventilation setpoint (%)']).catch(this.error);
+      }
+
+      if (data['Fan setpoint (rpm)'] !== undefined) {
+        this.setCapabilityValue('itho_fan_setpoint', data['Fan setpoint (rpm)']).catch(this.error);
+      }
+
       if (data['Fan speed (rpm)'] !== undefined) {
         const speed = data['Fan speed (rpm)'];
         this.currentSpeed = speed;
@@ -123,6 +135,14 @@ module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
         this.homey.flow.getDeviceTriggerCard('itho_fan_speed_changed')
           .trigger(this, { value: speed })
           .catch(this.error);
+      }
+
+      if (data.Error !== undefined) {
+        this.setCapabilityValue('itho_error', data.Error).catch(this.error);
+      }
+
+      if (data['Total operation (hours)'] !== undefined) {
+        this.setCapabilityValue('itho_total_operation', data['Total operation (hours)']).catch(this.error);
       }
 
       if (data.supplyTemp !== undefined) {
@@ -142,16 +162,33 @@ module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
   private handleStateMessage(message: Buffer) {
     try {
       const payload = message.toString().trim();
-      const speed = parseInt(payload);
+      const speedState = parseInt(payload);
       
-      if (!isNaN(speed)) {
-        this.currentSpeed = speed;
-        this.setCapabilityValue('itho_fan_speed', speed).catch(this.error);
-        this.log(`State updated: speed=${speed}`);
+      if (!isNaN(speedState)) {
+        this.setCapabilityValue('itho_speed_state', speedState).catch(this.error);
+
+        const preset = this.speedStateToPreset(speedState);
+        if (preset) {
+          this.currentPreset = preset;
+          this.setCapabilityValue('itho_fan_preset', preset).catch(this.error);
+          
+          this.homey.flow.getDeviceTriggerCard('itho_preset_changed')
+            .trigger(this, { preset: preset })
+            .catch(this.error);
+        }
+
+        this.log(`State updated: speed_state=${speedState}, preset=${preset || 'none'}`);
       }
     } catch (error) {
       this.error('Failed to parse state message:', error);
     }
+  }
+
+  private speedStateToPreset(speedState: number): string | null {
+    if (speedState === 20) return 'low';
+    if (speedState === 120) return 'medium';
+    if (speedState === 220) return 'high';
+    return null;
   }
 
   private handleLWTMessage(message: Buffer) {

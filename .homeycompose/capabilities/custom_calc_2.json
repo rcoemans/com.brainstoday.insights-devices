@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Calculated Value 2",
+    "nl": "Berekende Waarde 2"
+  },
+  "decimals": 2,
+  "insights": true,
+  "chartType": "spline",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/efficiency.svg"
+}

@@ -5,12 +5,18 @@
   },
   "class": "fan",
   "capabilities": [
+    "itho_speed_state",
     "itho_fan_speed",
     "itho_fan_preset",
+    "itho_ventilation_setpoint",
+    "itho_fan_setpoint",
     "measure_temperature.indoor",
     "measure_humidity.indoor",
+    "itho_ppmw",
     "measure_temperature.supply",
     "measure_temperature.exhaust",
+    "itho_error",
+    "itho_total_operation",
     "itho_online"
   ],
   "capabilitiesOptions": {
@@ -50,6 +56,42 @@
         "nl": "Afvoertemperatuur"
       }
     },
+    "itho_speed_state": {
+      "title": {
+        "en": "Speed State (0-255)",
+        "nl": "Snelheidsstatus (0-255)"
+      }
+    },
+    "itho_ventilation_setpoint": {
+      "title": {
+        "en": "Ventilation Setpoint",
+        "nl": "Ventilatie Setpoint"
+      }
+    },
+    "itho_fan_setpoint": {
+      "title": {
+        "en": "Fan Setpoint",
+        "nl": "Ventilator Setpoint"
+      }
+    },
+    "itho_ppmw": {
+      "title": {
+        "en": "Absolute Humidity",
+        "nl": "Absolute Luchtvochtigheid"
+      }
+    },
+    "itho_error": {
+      "title": {
+        "en": "Error Code",
+        "nl": "Foutcode"
+      }
+    },
+    "itho_total_operation": {
+      "title": {
+        "en": "Total Operation",
+        "nl": "Totale Bedrijfstijd"
+      }
+    },
     "itho_online": {
       "title": {
         "en": "Online",
@@ -70,7 +112,15 @@
   },
   "pair": [
     {
-      "id": "device_settings"
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
     }
   ],
   "settings": [

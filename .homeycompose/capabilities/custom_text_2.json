@@ -1,0 +1,12 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Text Value 2",
+    "nl": "Tekstwaarde 2"
+  },
+  "insights": false,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/graph.svg"
+}

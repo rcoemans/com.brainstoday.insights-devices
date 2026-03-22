@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Number Value 3",
+    "nl": "Getalwaarde 3"
+  },
+  "decimals": 2,
+  "insights": true,
+  "chartType": "spline",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/graph.svg"
+}

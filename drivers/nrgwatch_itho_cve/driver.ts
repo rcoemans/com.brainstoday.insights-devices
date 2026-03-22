@@ -68,26 +68,22 @@ module.exports = class NRGWatchIthoCVEDriver extends Homey.Driver {
     }
   }
 
-  async onPair(session: any) {
-    session.setHandler('showView', async (viewId: string) => {
-      this.log('Pair view:', viewId);
-    });
-
-    session.setHandler('device_settings', async (data: any) => {
-      return {
-        name: data.name || 'Itho CVE',
+  async onPairListDevices() {
+    return [
+      {
+        name: 'Itho CVE',
         data: {
           id: `itho_cve_${Date.now()}`
         },
         settings: {
-          topic_status: data.topic_status || 'itho/ithostatus',
-          topic_lastcmd: data.topic_lastcmd || 'itho/lastcmd',
-          topic_state: data.topic_state || 'itho/state',
-          topic_lwt: data.topic_lwt || 'itho/LWT',
-          topic_cmd: data.topic_cmd || 'itho/cmd'
+          topic_status: 'itho/ithostatus',
+          topic_lastcmd: 'itho/lastcmd',
+          topic_state: 'itho/state',
+          topic_lwt: 'itho/LWT',
+          topic_cmd: 'itho/cmd'
         }
-      };
-    });
+      }
+    ];
   }
 
 };

@@ -40,22 +40,18 @@ module.exports = class FloorHeatingMonitorDriver extends Homey.Driver {
     }
   }
 
-  async onPair(session: any) {
-    session.setHandler('showView', async (viewId: string) => {
-      this.log('Pair view:', viewId);
-    });
-
-    session.setHandler('device_settings', async (data: any) => {
-      return {
-        name: data.name || 'Floor Heating Monitor',
+  async onPairListDevices() {
+    return [
+      {
+        name: 'Floor Heating Monitor',
         data: {
           id: `floor_heating_${Date.now()}`
         },
         settings: {
-          mqtt_topic: data.mqtt_topic || 'heating/floor1/status'
+          mqtt_topic: 'heating/floor1/status'
         }
-      };
-    });
+      }
+    ];
   }
 
 };

@@ -11,37 +11,21 @@ module.exports = class CustomMQTTSensorDriver extends Homey.Driver {
     this.homey.flow.getDeviceTriggerCard('custom_sensor_calculated_changed');
   }
 
-  async onPair(session: any) {
-    let deviceConfig: any = {
-      name: 'Custom MQTT Sensor',
-      topic: '',
-      payloadType: 'number',
-      sourceMappings: [],
-      calculatedFields: []
-    };
-
-    session.setHandler('list_devices', async () => {
-      return [{
-        name: deviceConfig.name || 'Custom MQTT Sensor',
+  async onPairListDevices() {
+    return [
+      {
+        name: 'Custom MQTT Sensor',
         data: {
           id: `custom_mqtt_${Date.now()}`,
-          sourceMappings: deviceConfig.sourceMappings || [],
-          calculatedFields: deviceConfig.calculatedFields || []
+          sourceMappings: [],
+          calculatedFields: []
         },
         settings: {
-          mqtt_topic: deviceConfig.topic || '',
-          payload_type: deviceConfig.payloadType || 'number'
+          mqtt_topic: '',
+          payload_type: 'number'
         }
-      }];
-    });
-
-    session.setHandler('configure_device', async (data: any) => {
-      deviceConfig = {
-        ...deviceConfig,
-        ...data
-      };
-      return true;
-    });
+      }
+    ];
   }
 
 };

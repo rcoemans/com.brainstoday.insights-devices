@@ -21,6 +21,16 @@
     "climate"
   ],
   "permissions": [],
+  "api": {
+    "getLog": {
+      "method": "GET",
+      "path": "/log"
+    },
+    "postReconnect": {
+      "method": "POST",
+      "path": "/reconnect"
+    }
+  },
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
@@ -935,8 +945,8 @@
               },
               "value": "",
               "hint": {
-                "en": "The MQTT topic to subscribe to",
-                "nl": "Het MQTT onderwerp om te abonneren"
+                "en": "The MQTT topic to subscribe to. Example: sensor/crawlSpaceHeight or itho/lastcmd",
+                "nl": "Het MQTT onderwerp om op te abonneren. Voorbeeld: sensor/crawlSpaceHeight of itho/lastcmd"
               }
             },
             {
@@ -947,6 +957,10 @@
                 "nl": "Payload Type"
               },
               "value": "number",
+              "hint": {
+                "en": "Single Number: payload is just a number (e.g. 42.5). JSON Object: payload is a JSON object (e.g. {\"temp\":22.9}). JSON Array: payload is a JSON array (e.g. [22.9, 39.3]).",
+                "nl": "Enkel Getal: payload is een getal (bijv. 42.5). JSON Object: payload is een JSON object (bijv. {\"temp\":22.9}). JSON Array: payload is een JSON array (bijv. [22.9, 39.3])."
+              },
               "values": [
                 {
                   "id": "number",
@@ -970,6 +984,394 @@
                   }
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Number Value 1",
+            "nl": "Getalwaarde 1"
+          },
+          "children": [
+            {
+              "id": "number_1_path",
+              "type": "text",
+              "label": {
+                "en": "JSON Path",
+                "nl": "JSON Pad"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable this slot. For 'Single Number': leave empty or enter 'value'. For 'JSON Object': enter the key name, e.g. 'temp' or 'data.temperature' for nested. For 'JSON Array': enter the index, e.g. '0'.",
+                "nl": "Laat leeg om dit slot uit te schakelen. Voor 'Enkel Getal': laat leeg of voer 'value' in. Voor 'JSON Object': voer de sleutelnaam in, bijv. 'temp' of 'data.temperature' voor genest. Voor 'JSON Array': voer de index in, bijv. '0'."
+              }
+            },
+            {
+              "id": "number_1_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": "",
+              "hint": {
+                "en": "Name shown on the device card, e.g. 'Ground Level' or 'Temperature'",
+                "nl": "Naam op de apparaatkaart, bijv. 'Grondniveau' of 'Temperatuur'"
+              }
+            },
+            {
+              "id": "number_1_unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": "",
+              "hint": {
+                "en": "Measurement unit shown after the value, e.g. 'cm', '°C', 'rpm', '%'",
+                "nl": "Meeteenheid na de waarde, bijv. 'cm', '°C', 'rpm', '%'"
+              }
+            },
+            {
+              "id": "number_1_decimals",
+              "type": "number",
+              "label": {
+                "en": "Decimal Places",
+                "nl": "Decimalen"
+              },
+              "value": 1,
+              "min": 0,
+              "max": 5,
+              "hint": {
+                "en": "Number of decimal places to show (0-5)",
+                "nl": "Aantal decimalen om weer te geven (0-5)"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Number Value 2",
+            "nl": "Getalwaarde 2"
+          },
+          "children": [
+            {
+              "id": "number_2_path",
+              "type": "text",
+              "label": {
+                "en": "JSON Path",
+                "nl": "JSON Pad"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. See Number Value 1 for examples.",
+                "nl": "Laat leeg om uit te schakelen. Zie Getalwaarde 1 voor voorbeelden."
+              }
+            },
+            {
+              "id": "number_2_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": ""
+            },
+            {
+              "id": "number_2_unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": ""
+            },
+            {
+              "id": "number_2_decimals",
+              "type": "number",
+              "label": {
+                "en": "Decimal Places",
+                "nl": "Decimalen"
+              },
+              "value": 1,
+              "min": 0,
+              "max": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Number Value 3",
+            "nl": "Getalwaarde 3"
+          },
+          "children": [
+            {
+              "id": "number_3_path",
+              "type": "text",
+              "label": {
+                "en": "JSON Path",
+                "nl": "JSON Pad"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. See Number Value 1 for examples.",
+                "nl": "Laat leeg om uit te schakelen. Zie Getalwaarde 1 voor voorbeelden."
+              }
+            },
+            {
+              "id": "number_3_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": ""
+            },
+            {
+              "id": "number_3_unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": ""
+            },
+            {
+              "id": "number_3_decimals",
+              "type": "number",
+              "label": {
+                "en": "Decimal Places",
+                "nl": "Decimalen"
+              },
+              "value": 1,
+              "min": 0,
+              "max": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Number Value 4",
+            "nl": "Getalwaarde 4"
+          },
+          "children": [
+            {
+              "id": "number_4_path",
+              "type": "text",
+              "label": {
+                "en": "JSON Path",
+                "nl": "JSON Pad"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. See Number Value 1 for examples.",
+                "nl": "Laat leeg om uit te schakelen. Zie Getalwaarde 1 voor voorbeelden."
+              }
+            },
+            {
+              "id": "number_4_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": ""
+            },
+            {
+              "id": "number_4_unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": ""
+            },
+            {
+              "id": "number_4_decimals",
+              "type": "number",
+              "label": {
+                "en": "Decimal Places",
+                "nl": "Decimalen"
+              },
+              "value": 1,
+              "min": 0,
+              "max": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Text Value 1",
+            "nl": "Tekstwaarde 1"
+          },
+          "children": [
+            {
+              "id": "text_1_path",
+              "type": "text",
+              "label": {
+                "en": "JSON Path",
+                "nl": "JSON Pad"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. Path to a text/string value in the JSON payload, e.g. 'command' or 'source'. Only works with JSON Object payload type.",
+                "nl": "Laat leeg om uit te schakelen. Pad naar een tekst/string waarde in de JSON payload, bijv. 'command' of 'source'. Werkt alleen met JSON Object payload type."
+              }
+            },
+            {
+              "id": "text_1_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": "",
+              "hint": {
+                "en": "Name shown on the device card, e.g. 'Last Command'",
+                "nl": "Naam op de apparaatkaart, bijv. 'Laatste Commando'"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Text Value 2",
+            "nl": "Tekstwaarde 2"
+          },
+          "children": [
+            {
+              "id": "text_2_path",
+              "type": "text",
+              "label": {
+                "en": "JSON Path",
+                "nl": "JSON Pad"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. See Text Value 1 for examples.",
+                "nl": "Laat leeg om uit te schakelen. Zie Tekstwaarde 1 voor voorbeelden."
+              }
+            },
+            {
+              "id": "text_2_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Calculated Value 1",
+            "nl": "Berekende Waarde 1"
+          },
+          "children": [
+            {
+              "id": "calc_1_formula",
+              "type": "text",
+              "label": {
+                "en": "Formula",
+                "nl": "Formule"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. Use n1, n2, n3, n4 to reference Number Values 1-4. Supports +, -, *, /, parentheses. Example: 'n1 - n2' or '(n1 + n2) / 2'.",
+                "nl": "Laat leeg om uit te schakelen. Gebruik n1, n2, n3, n4 om Getalwaarden 1-4 te refereren. Ondersteunt +, -, *, /, haakjes. Voorbeeld: 'n1 - n2' of '(n1 + n2) / 2'."
+              }
+            },
+            {
+              "id": "calc_1_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": "",
+              "hint": {
+                "en": "Name shown on the device card, e.g. 'Delta T'",
+                "nl": "Naam op de apparaatkaart, bijv. 'Delta T'"
+              }
+            },
+            {
+              "id": "calc_1_unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": ""
+            },
+            {
+              "id": "calc_1_decimals",
+              "type": "number",
+              "label": {
+                "en": "Decimal Places",
+                "nl": "Decimalen"
+              },
+              "value": 1,
+              "min": 0,
+              "max": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Calculated Value 2",
+            "nl": "Berekende Waarde 2"
+          },
+          "children": [
+            {
+              "id": "calc_2_formula",
+              "type": "text",
+              "label": {
+                "en": "Formula",
+                "nl": "Formule"
+              },
+              "value": "",
+              "hint": {
+                "en": "Leave empty to disable. See Calculated Value 1 for examples.",
+                "nl": "Laat leeg om uit te schakelen. Zie Berekende Waarde 1 voor voorbeelden."
+              }
+            },
+            {
+              "id": "calc_2_label",
+              "type": "text",
+              "label": {
+                "en": "Display Label",
+                "nl": "Weergavenaam"
+              },
+              "value": ""
+            },
+            {
+              "id": "calc_2_unit",
+              "type": "text",
+              "label": {
+                "en": "Unit",
+                "nl": "Eenheid"
+              },
+              "value": ""
+            },
+            {
+              "id": "calc_2_decimals",
+              "type": "number",
+              "label": {
+                "en": "Decimal Places",
+                "nl": "Decimalen"
+              },
+              "value": 1,
+              "min": 0,
+              "max": 5
             }
           ]
         }
@@ -1020,7 +1422,15 @@
       },
       "pair": [
         {
-          "id": "device_settings"
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "settings": [
@@ -1040,8 +1450,8 @@
               },
               "value": "heating/floor1/status",
               "hint": {
-                "en": "The MQTT topic to subscribe to for floor heating data",
-                "nl": "Het MQTT onderwerp om te abonneren voor vloerverwarmingsgegevens"
+                "en": "The MQTT topic to subscribe to for floor heating data. Expected JSON format: {\"flow\": 35.2, \"return\": 28.5} where 'flow' is the flow/supply temperature and 'return' is the return temperature in °C",
+                "nl": "Het MQTT onderwerp om te abonneren voor vloerverwarmingsgegevens. Verwacht JSON formaat: {\"flow\": 35.2, \"return\": 28.5} waarbij 'flow' de aanvoertemperatuur is en 'return' de retourtemperatuur in °C"
               }
             }
           ]
@@ -1079,7 +1489,15 @@
       },
       "pair": [
         {
-          "id": "device_settings"
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "settings": [
@@ -1099,8 +1517,8 @@
               },
               "value": "sensor/crawlSpaceHeight",
               "hint": {
-                "en": "The MQTT topic to subscribe to for ground level data",
-                "nl": "Het MQTT onderwerp om te abonneren voor grondniveaugegevens"
+                "en": "The MQTT topic to subscribe to for ground level data. Expected payload: a single numeric value (e.g. 42.5 representing cm)",
+                "nl": "Het MQTT onderwerp om te abonneren voor grondniveaugegevens. Verwachte payload: een enkele numerieke waarde (bijv. 42.5 voor cm)"
               }
             },
             {
@@ -1141,12 +1559,18 @@
       },
       "class": "fan",
       "capabilities": [
+        "itho_speed_state",
         "itho_fan_speed",
         "itho_fan_preset",
+        "itho_ventilation_setpoint",
+        "itho_fan_setpoint",
         "measure_temperature.indoor",
         "measure_humidity.indoor",
+        "itho_ppmw",
         "measure_temperature.supply",
         "measure_temperature.exhaust",
+        "itho_error",
+        "itho_total_operation",
         "itho_online"
       ],
       "capabilitiesOptions": {
@@ -1186,6 +1610,42 @@
             "nl": "Afvoertemperatuur"
           }
         },
+        "itho_speed_state": {
+          "title": {
+            "en": "Speed State (0-255)",
+            "nl": "Snelheidsstatus (0-255)"
+          }
+        },
+        "itho_ventilation_setpoint": {
+          "title": {
+            "en": "Ventilation Setpoint",
+            "nl": "Ventilatie Setpoint"
+          }
+        },
+        "itho_fan_setpoint": {
+          "title": {
+            "en": "Fan Setpoint",
+            "nl": "Ventilator Setpoint"
+          }
+        },
+        "itho_ppmw": {
+          "title": {
+            "en": "Absolute Humidity",
+            "nl": "Absolute Luchtvochtigheid"
+          }
+        },
+        "itho_error": {
+          "title": {
+            "en": "Error Code",
+            "nl": "Foutcode"
+          }
+        },
+        "itho_total_operation": {
+          "title": {
+            "en": "Total Operation",
+            "nl": "Totale Bedrijfstijd"
+          }
+        },
         "itho_online": {
           "title": {
             "en": "Online",
@@ -1206,7 +1666,15 @@
       },
       "pair": [
         {
-          "id": "device_settings"
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
         }
       ],
       "settings": [
@@ -1289,6 +1757,114 @@
     }
   ],
   "capabilities": {
+    "custom_calc_1": {
+      "type": "number",
+      "title": {
+        "en": "Calculated Value 1",
+        "nl": "Berekende Waarde 1"
+      },
+      "decimals": 2,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/efficiency.svg"
+    },
+    "custom_calc_2": {
+      "type": "number",
+      "title": {
+        "en": "Calculated Value 2",
+        "nl": "Berekende Waarde 2"
+      },
+      "decimals": 2,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/efficiency.svg"
+    },
+    "custom_number_1": {
+      "type": "number",
+      "title": {
+        "en": "Number Value 1",
+        "nl": "Getalwaarde 1"
+      },
+      "decimals": 2,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "custom_number_2": {
+      "type": "number",
+      "title": {
+        "en": "Number Value 2",
+        "nl": "Getalwaarde 2"
+      },
+      "decimals": 2,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "custom_number_3": {
+      "type": "number",
+      "title": {
+        "en": "Number Value 3",
+        "nl": "Getalwaarde 3"
+      },
+      "decimals": 2,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "custom_number_4": {
+      "type": "number",
+      "title": {
+        "en": "Number Value 4",
+        "nl": "Getalwaarde 4"
+      },
+      "decimals": 2,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "custom_text_1": {
+      "type": "string",
+      "title": {
+        "en": "Text Value 1",
+        "nl": "Tekstwaarde 1"
+      },
+      "insights": false,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "custom_text_2": {
+      "type": "string",
+      "title": {
+        "en": "Text Value 2",
+        "nl": "Tekstwaarde 2"
+      },
+      "insights": false,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
     "ground_level": {
       "type": "number",
       "title": {
@@ -1305,6 +1881,20 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/icons/graph.svg"
+    },
+    "itho_error": {
+      "type": "number",
+      "title": {
+        "en": "Error Code",
+        "nl": "Foutcode"
+      },
+      "decimals": 0,
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/alarm.svg"
     },
     "itho_fan_preset": {
       "type": "string",
@@ -1361,6 +1951,23 @@
       ],
       "icon": "/assets/icons/on-off-button.svg"
     },
+    "itho_fan_setpoint": {
+      "type": "number",
+      "title": {
+        "en": "Fan Setpoint",
+        "nl": "Ventilator Setpoint"
+      },
+      "units": {
+        "en": "rpm"
+      },
+      "decimals": 0,
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/performance.svg"
+    },
     "itho_fan_speed": {
       "type": "number",
       "title": {
@@ -1388,6 +1995,75 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/icons/on-off-button.svg"
+    },
+    "itho_ppmw": {
+      "type": "number",
+      "title": {
+        "en": "Absolute Humidity",
+        "nl": "Absolute Luchtvochtigheid"
+      },
+      "units": {
+        "en": "ppmw"
+      },
+      "decimals": 0,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/percentage.svg"
+    },
+    "itho_speed_state": {
+      "type": "number",
+      "title": {
+        "en": "Speed State",
+        "nl": "Snelheidsstatus"
+      },
+      "min": 0,
+      "max": 255,
+      "decimals": 0,
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/performance.svg"
+    },
+    "itho_total_operation": {
+      "type": "number",
+      "title": {
+        "en": "Total Operation",
+        "nl": "Totale Bedrijfstijd"
+      },
+      "units": {
+        "en": "h"
+      },
+      "decimals": 0,
+      "insights": true,
+      "chartType": "spline",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/graph.svg"
+    },
+    "itho_ventilation_setpoint": {
+      "type": "number",
+      "title": {
+        "en": "Ventilation Setpoint",
+        "nl": "Ventilatie Setpoint"
+      },
+      "units": {
+        "en": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/performance.svg"
     }
   }
 }

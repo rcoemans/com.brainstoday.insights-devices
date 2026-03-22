@@ -36,46 +36,107 @@ MQTT Broker Configuratie:
 - Optioneel LWT (Last Will and Testament) configuratie
 - Configureerbaar keepalive interval (standaard: 60 seconden)
 
-Vloerverwarming Monitor:
-- Bewaakt aanvoertemperatuur, retourtemperatuur en berekent automatisch Delta T (Δt)
-- Verwachte MQTT payload: JSON object met "flow" en "return" velden
-- Voorbeeld: {"flow": 35.2, "return": 29.8}
-- Triggers: aanvoer-/retour-/delta temperatuur gewijzigd
-- Condities: temperatuurvergelijkingen met operatoren
-- Alle waarden gelogd naar Insights
+GEBRUIKSINSTRUCTIES APPARATEN:
 
-Grondniveau Monitor:
-- Volgt grond- of waterniveau van een enkele numerieke MQTT payload
-- Verwachte MQTT payload: numerieke waarde (bijv. 18.4)
-- Optionele alarmdrempel configuratie
-- Triggers: grondniveau gewijzigd
-- Condities: niveauvergelijkingen met operatoren
-- Waarden gelogd naar Insights
+1. Vloerverwarming Monitor:
+   Hoe te gebruiken:
+   - Apparaat toevoegen: Apparaten → Apparaat Toevoegen → Insights Devices → Vloerverwarming Monitor
+   - MQTT onderwerp configureren in apparaatinstellingen (bijv. heating/floor1/status)
+   - Publiceer JSON berichten: {"flow": 35.2, "return": 29.8}
+   - "flow" = aanvoer-/inlaattemperatuur in °C
+   - "return" = retour-/uitlaattemperatuur in °C
+   - Delta T wordt automatisch berekend als flow - return
+   
+   Mogelijkheden:
+   - Aanvoertemperatuur (In), Retourtemperatuur (Uit), Delta T (Δt)
+   
+   Flow Kaarten:
+   - Triggers: aanvoer-/retour-/delta temperatuur gewijzigd
+   - Condities: temperatuurvergelijkingen met operatoren (lt, lte, gt, gte)
 
-NRG-Watch Itho CVE:
-- Volledige integratie voor Itho Daalderop CVE ventilatiesystemen
-- Leest status van meerdere MQTT onderwerpen (ithostatus, lastcmd, state, LWT, remotesinfo)
-- Publiceert commando's om ventilatorsnelheid, presets en modi te regelen
-- Mogelijkheden: ventilatorsnelheid, preset, luchtvochtigheid, temperatuur, luchtkwaliteit, aanvoer-/afvoertemperaturen, override timer, foutcodes
-- Triggers: ventilatorsnelheid/preset/sensor wijzigingen, apparaat online status, foutcodes
-- Condities: snelheid/temperatuur/luchtvochtigheid vergelijkingen, preset controles, online status
-- Acties: ventilatorsnelheid instellen (met optionele timer), preset commando's verzenden, virtuele afstandsbediening commando's, wachtrij wissen
-- Standaard MQTT onderwerpen configureerbaar in apparaatinstellingen
-- Ondersteunt zowel eenvoudige als geavanceerde Itho CVE payloads
+2. Grondniveau Monitor:
+   Hoe te gebruiken:
+   - Apparaat toevoegen: Apparaten → Apparaat Toevoegen → Insights Devices → Grondniveau Monitor
+   - Instellingen configureren: MQTT onderwerp (bijv. sensor/crawlSpaceHeight), Eenheid (cm/m/mm), optionele Alarmdrempel
+   - Publiceer enkele numerieke waarde: 42.5 (geen JSON omhulling)
+   - Waarde vertegenwoordigt niveau in geconfigureerde eenheid
+   
+   Mogelijkheden:
+   - Grondniveau (numeriek met configureerbare eenheid)
+   
+   Flow Kaarten:
+   - Triggers: grondniveau gewijzigd
+   - Condities: niveauvergelijkingen met operatoren (lt, lte, gt, gte)
 
-Aangepaste MQTT Sensor:
-- Geavanceerd flexibel apparaat voor aangepaste MQTT toepassingen
-- Ondersteunt drie payload types: enkele numerieke waarde, JSON object, JSON array
-- JSON object mapping met puntnotatie (bijv. "heating.flow", "sensors.temp")
-- JSON array mapping met indexnotatie (bijv. "0", "1", "2")
-- Meerdere bronwaarde mappings per apparaat
-- Berekende velden met formules met +, -, *, / en haakjes
-- Voorbeeldberekeningen: delta_t = flow - return, avg_temp = (flow + return) / 2
-- Configureerbare capability types: measure_temperature, measure_humidity, measure_pressure, measure_level, measure_air_quality, measure_co2, measure_percentage, measure_power, meter_power, custom_numeric
-- Per-veld Insights logging configuratie
-- Per-veld zichtbaarheid configuratie
-- Triggers: gemapte/berekende waarde gewijzigd
-- Condities: waarde vergelijkingen met operatoren
+3. NRG-Watch Itho CVE:
+   Hoe te gebruiken:
+   - Vereisten: Itho Daalderop CVE unit, NRG-Watch add-on geïnstalleerd en publiceert naar MQTT
+   - Apparaat toevoegen: Apparaten → Apparaat Toevoegen → Insights Devices → NRG-Watch Itho CVE
+   - MQTT onderwerpen configureren in apparaatinstellingen (standaard: itho/ithostatus, itho/state, itho/LWT, itho/cmd)
+   - Apparaat abonneert automatisch en verwerkt gegevens
+   - Ventilator preset weerspiegelt huidige status (20=Laag, 120=Middel, 220=Hoog)
+   - Besturen via apparaatkaart of flow kaarten
+   
+   Mogelijkheden:
+   - Snelheidsstatus (0-255, getoond op kaart), Ventilatorsnelheid (rpm), Ventilator Preset, Ventilatie Setpoint (%), Ventilator Setpoint (rpm)
+   - Binnentemperatuur & Luchtvochtigheid, Absolute Luchtvochtigheid (ppmw)
+   - Aanvoer- & Afvoertemperaturen (indien beschikbaar), Foutcode, Totale Bedrijfstijd (uren), Online Status
+   
+   Verwachte MQTT payloads:
+   - ithostatus: {"temp":22.9,"hum":39.3,"ppmw":6933,"Ventilation setpoint (%)":30,"Fan setpoint (rpm)":920,"Fan speed (rpm)":923,"Error":0,"Total operation (hours)":27005}
+   - state: 120 (enkel getal 0-255)
+   
+   Flow Kaarten:
+   - Triggers: ventilatorsnelheid/preset/sensor wijzigingen, online status wijzigingen
+   - Condities: snelheid/temperatuur/luchtvochtigheid vergelijkingen, preset controles, online status
+   - Acties: ventilatorsnelheid instellen, ventilatorsnelheid met timer instellen, preset instellen, virtuele afstandsbediening commando's verzenden, wachtrij wissen
+
+4. Aangepaste MQTT Sensor:
+   Hoe te gebruiken:
+   - Apparaat toevoegen: Apparaten → Apparaat Toevoegen → Insights Devices → Aangepaste MQTT Sensor
+   - MQTT onderwerp en payload type configureren (Enkel Getal / JSON Object / JSON Array)
+   - Slots configureren in apparaatinstellingen:
+     * Getalwaarde 1-4: JSON Pad, Weergavenaam, Eenheid, Decimalen
+     * Tekstwaarde 1-2: JSON Pad, Weergavenaam (alleen JSON Object)
+     * Berekende Waarde 1-2: Formule (gebruik n1, n2, n3, n4), Weergavenaam, Eenheid, Decimalen
+   - Laat JSON Pad of Formule leeg om een slot uit te schakelen
+   - Mogelijkheden worden automatisch toegevoegd/verwijderd bij opslaan instellingen
+   
+   Beschikbare Slots:
+   - 4 Getalwaarde slots (voor numerieke gegevens)
+   - 2 Tekstwaarde slots (voor string gegevens, alleen JSON Object)
+   - 2 Berekende Waarde slots (formules met +, -, *, /, haakjes)
+   
+   Voorbeeld 1 - Enkel Getal (Grondniveau):
+   - MQTT Onderwerp: sensor/crawlSpaceHeight
+   - Payload Type: Enkel Getal
+   - Getalwaarde 1: JSON Pad = value (of leeg), Label = Grondniveau, Eenheid = cm, Decimalen = 0
+   - MQTT Payload: 42.5
+   
+   Voorbeeld 2 - JSON Object (Itho Laatste Commando):
+   - MQTT Onderwerp: itho/lastcmd
+   - Payload Type: JSON Object
+   - Tekstwaarde 1: JSON Pad = command, Label = Laatste Commando
+   - Getalwaarde 1: JSON Pad = timestamp, Label = Tijdstempel, Decimalen = 0
+   - MQTT Payload: {"source":"MQTT API","command":"speed:120","timestamp":1774182271}
+   
+   Voorbeeld 3 - JSON Object met Berekening:
+   - MQTT Onderwerp: heating/status
+   - Payload Type: JSON Object
+   - Getalwaarde 1: JSON Pad = flow, Label = Aanvoer Temp, Eenheid = °C, Decimalen = 1
+   - Getalwaarde 2: JSON Pad = return, Label = Retour Temp, Eenheid = °C, Decimalen = 1
+   - Berekende Waarde 1: Formule = n1 - n2, Label = Delta T, Eenheid = °C, Decimalen = 1
+   - MQTT Payload: {"flow":35.2,"return":28.5}
+   - Resultaat: Toont Aanvoer Temp (35.2°C), Retour Temp (28.5°C), Delta T (6.7°C)
+   
+   JSON Pad formaten:
+   - Enkel Getal: leeg laten of "value" invoeren
+   - JSON Object: sleutelnaam (bijv. "temp") of genest (bijv. "data.temperature")
+   - JSON Array: indexnummer (bijv. "0", "1", "2")
+   
+   Flow Kaarten:
+   - Triggers: waarde gewijzigd (gemapped en berekend)
+   - Condities: waarde vergelijkingen met operatoren (lt, lte, gt, gte)
 
 Flow Kaarten:
 - App-niveau triggers: broker verbonden, broker verbinding verbroken

@@ -20,6 +20,16 @@
     "climate"
   ],
   "permissions": [],
+  "api": {
+    "getLog": {
+      "method": "GET",
+      "path": "/log"
+    },
+    "postReconnect": {
+      "method": "POST",
+      "path": "/reconnect"
+    }
+  },
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",

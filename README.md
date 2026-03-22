@@ -67,7 +67,7 @@ Add devices through the standard Homey pairing flow:
 4. Configure MQTT topic and device-specific settings
 5. Complete pairing
 
-## Device Details
+## Device Details & Usage Instructions
 
 ### Floor Heating Monitor
 
@@ -77,6 +77,25 @@ Monitors underfloor heating performance by tracking flow and return temperatures
 - Flow Temperature (In)
 - Return Temperature (Out)
 - Delta T (Δt) - automatically calculated
+
+**How to Use:**
+
+1. **Add the device:**
+   - Go to Devices → Add Device → Insights Devices
+   - Select "Floor Heating Monitor"
+   - Click "Add Device"
+
+2. **Configure MQTT topic:**
+   - Open device settings
+   - Set MQTT Topic (e.g., `heating/floor1/status`)
+   - Save settings
+
+3. **Publish MQTT data:**
+   - Your system must publish JSON messages to the configured topic
+   - Required format: `{"flow": 35.2, "return": 29.8}`
+   - `flow` = supply/inlet temperature in °C
+   - `return` = return/outlet temperature in °C
+   - Delta T is calculated automatically as `flow - return`
 
 **MQTT Payload Example:**
 ```json
@@ -90,13 +109,34 @@ Monitors underfloor heating performance by tracking flow and return temperatures
 - Triggers: Flow/Return/Delta T temperature changed
 - Conditions: Temperature comparisons (lt, lte, gt, gte)
 
+---
+
 ### Ground Level Monitor
 
 Tracks ground or water level using direct numeric measurements.
 
 **Capabilities:**
-- Ground Level (cm)
+- Ground Level (numeric value with configurable unit)
 - Optional alarm threshold
+
+**How to Use:**
+
+1. **Add the device:**
+   - Go to Devices → Add Device → Insights Devices
+   - Select "Ground Level Monitor"
+   - Click "Add Device"
+
+2. **Configure settings:**
+   - Open device settings
+   - Set MQTT Topic (e.g., `sensor/crawlSpaceHeight`)
+   - Set Unit (e.g., `cm`, `m`, `mm`)
+   - Optional: Set Alarm Threshold (0 = disabled)
+   - Save settings
+
+3. **Publish MQTT data:**
+   - Your system must publish a single numeric value to the configured topic
+   - Example: `42.5` (representing 42.5 cm)
+   - No JSON wrapping needed - just the raw number
 
 **MQTT Payload Example:**
 ```
@@ -107,47 +147,208 @@ Tracks ground or water level using direct numeric measurements.
 - Triggers: Ground level changed
 - Conditions: Level comparisons (lt, lte, gt, gte)
 
+---
+
 ### NRG-Watch Itho CVE
 
 Integrates Itho Daalderop CVE ventilation units through the NRG-Watch MQTT add-on.
 
 **Capabilities:**
-- Fan Speed & Preset
-- Temperature & Humidity sensors
-- Air Quality monitoring
-- Supply/Exhaust temperatures
-- Status monitoring & control
+- Speed State (0-255) - shown on device card
+- Fan Speed (rpm)
+- Fan Preset (Low/Medium/High/Timer1/Timer2/Timer3)
+- Ventilation Setpoint (%)
+- Fan Setpoint (rpm)
+- Indoor Temperature & Humidity
+- Absolute Humidity (ppmw)
+- Supply & Exhaust Temperatures (if available)
+- Error Code
+- Total Operation Hours
+- Online Status
 
-**MQTT Topics (default):**
-- Status: `itho/ithostatus`
-- Commands: `itho/cmd`
-- State: `itho/state`
-- LWT: `itho/LWT`
+**How to Use:**
+
+1. **Prerequisites:**
+   - Itho Daalderop CVE ventilation unit
+   - NRG-Watch add-on installed and configured
+   - NRG-Watch publishing to MQTT broker
+
+2. **Add the device:**
+   - Go to Devices → Add Device → Insights Devices
+   - Select "NRG-Watch Itho CVE"
+   - Click "Add Device"
+
+3. **Configure MQTT topics:**
+   - Open device settings
+   - Configure the following topics (defaults shown):
+     - Status Topic: `itho/ithostatus`
+     - Last Command Topic: `itho/lastcmd`
+     - State Topic: `itho/state`
+     - LWT Topic: `itho/LWT`
+     - Command Topic: `itho/cmd`
+   - Save settings
+
+4. **Device will automatically:**
+   - Subscribe to status, state, and LWT topics
+   - Parse incoming data and update capabilities
+   - Reflect current fan preset based on speed state (20=Low, 120=Medium, 220=High)
+   - Track all sensor values and operation hours
+
+5. **Control the fan:**
+   - Use the device card to change presets
+   - Use flow cards to set specific speeds or send commands
+   - All commands are published to the command topic
+
+**Expected MQTT Payload (ithostatus):**
+```json
+{
+  "temp": 22.9,
+  "hum": 39.3,
+  "ppmw": 6933,
+  "Ventilation setpoint (%)": 30,
+  "Fan setpoint (rpm)": 920,
+  "Fan speed (rpm)": 923,
+  "Error": 0,
+  "Total operation (hours)": 27005
+}
+```
+
+**Expected MQTT Payload (state):**
+```
+120
+```
+(Single number 0-255 representing fan speed state)
 
 **Flow Cards:**
-- Triggers: Fan speed/preset/sensor changes, status changes
-- Conditions: Speed/temperature/humidity comparisons, preset checks
-- Actions: Set fan speed, send preset commands, control modes
+- Triggers: Fan speed/preset/sensor changes, online status changes
+- Conditions: Speed/temperature/humidity comparisons, preset checks, online status
+- Actions: Set fan speed, set fan speed with timer, set preset, send virtual remote commands, clear command queue
+
+---
 
 ### Custom MQTT Sensor
 
-Advanced flexible device for custom MQTT payloads.
+Advanced flexible device for custom MQTT payloads with configurable value mappings and calculations.
 
-**Features:**
-- Support for numeric, JSON object, and JSON array payloads
-- Multiple source value mappings
-- Calculated fields with formulas (e.g., `delta = flow - return`)
-- Configurable Insights logging
-- Custom capability selection
+**Available Slots:**
+- **4 Number Value slots** - for numeric data
+- **2 Text Value slots** - for string data  
+- **2 Calculated Value slots** - for formulas
 
-**Supported Payload Types:**
-- Single numeric value
-- JSON object with dot notation (e.g., `heating.flow`)
-- JSON array with index notation (e.g., `0`, `1`)
+**How to Use:**
 
-**Calculation Engine:**
-- Operators: `+`, `-`, `*`, `/`, parentheses
-- Example: `avg_temp = (flow + return) / 2`
+1. **Add the device:**
+   - Go to Devices → Add Device → Insights Devices
+   - Select "Custom MQTT Sensor"
+   - Click "Add Device"
+
+2. **Configure MQTT settings:**
+   - Open device settings
+   - Set MQTT Topic
+   - Select Payload Type:
+     - **Single Number**: payload is just a number (e.g., `42.5`)
+     - **JSON Object**: payload is JSON (e.g., `{"temp":22.9}`)
+     - **JSON Array**: payload is array (e.g., `[22.9, 39.3]`)
+
+3. **Configure Number Value slots (1-4):**
+   - For each slot you want to use:
+     - **JSON Path**: 
+       - Single Number: leave empty or enter `value`
+       - JSON Object: enter key name (e.g., `temp` or `data.temperature` for nested)
+       - JSON Array: enter index (e.g., `0`, `1`)
+     - **Display Label**: Name shown on device card (e.g., `Ground Level`)
+     - **Unit**: Measurement unit (e.g., `cm`, `°C`, `%`)
+     - **Decimal Places**: 0-5 decimal places to show
+   - Leave JSON Path empty to disable a slot
+
+4. **Configure Text Value slots (1-2):**
+   - Only works with JSON Object payload type
+   - **JSON Path**: Key name in JSON (e.g., `command`, `source`)
+   - **Display Label**: Name shown on device card
+   - Leave JSON Path empty to disable a slot
+
+5. **Configure Calculated Value slots (1-2):**
+   - **Formula**: Use `n1`, `n2`, `n3`, `n4` to reference Number Values
+   - Supports: `+`, `-`, `*`, `/`, parentheses
+   - Examples: `n1 - n2`, `(n1 + n2) / 2`
+   - **Display Label**: Name shown on device card
+   - **Unit**: Measurement unit
+   - **Decimal Places**: 0-5 decimal places
+   - Leave Formula empty to disable a slot
+
+6. **Save settings:**
+   - Capabilities are automatically added/removed based on configuration
+   - Device starts receiving and processing MQTT messages immediately
+
+**Example 1: Single Number (Ground Level)**
+
+Settings:
+- MQTT Topic: `sensor/crawlSpaceHeight`
+- Payload Type: `Single Number`
+- Number Value 1:
+  - JSON Path: `value` (or leave empty)
+  - Display Label: `Ground Level`
+  - Unit: `cm`
+  - Decimal Places: `0`
+
+MQTT Payload: `42.5`
+
+**Example 2: JSON Object (Itho Last Command)**
+
+Settings:
+- MQTT Topic: `itho/lastcmd`
+- Payload Type: `JSON Object`
+- Text Value 1:
+  - JSON Path: `command`
+  - Display Label: `Last Command`
+- Number Value 1:
+  - JSON Path: `timestamp`
+  - Display Label: `Timestamp`
+  - Decimal Places: `0`
+
+MQTT Payload:
+```json
+{
+  "source": "MQTT API",
+  "command": "speed:120",
+  "timestamp": 1774182271
+}
+```
+
+**Example 3: JSON Object with Calculation (Heating System)**
+
+Settings:
+- MQTT Topic: `heating/status`
+- Payload Type: `JSON Object`
+- Number Value 1:
+  - JSON Path: `flow`
+  - Display Label: `Flow Temp`
+  - Unit: `°C`
+  - Decimal Places: `1`
+- Number Value 2:
+  - JSON Path: `return`
+  - Display Label: `Return Temp`
+  - Unit: `°C`
+  - Decimal Places: `1`
+- Calculated Value 1:
+  - Formula: `n1 - n2`
+  - Display Label: `Delta T`
+  - Unit: `°C`
+  - Decimal Places: `1`
+
+MQTT Payload:
+```json
+{
+  "flow": 35.2,
+  "return": 28.5
+}
+```
+
+Result: Device shows Flow Temp (35.2°C), Return Temp (28.5°C), and Delta T (6.7°C)
+
+**Flow Cards:**
+- Triggers: Value changed (for both mapped and calculated values)
+- Conditions: Value comparisons (lt, lte, gt, gte)
 
 ## MQTT Broker Configuration
 
@@ -226,7 +427,11 @@ The app maintains an MQTT broker log accessible through the app settings:
 
 ## Credits
 
-This Homey app was created by **Robert Coemans** with assistance from AI-powered development tools.
+This app is a co-creation between **Robert Coemans** and **Claude Opus** (Anthropic), built using **[Windsurf](https://windsurf.com)** — an AI-powered IDE for collaborative software development.
+
+If you like this, consider [buying me a coffee](https://buymeacoffee.com/kabxpqqg7z).
+
+Pull requests and issue reports are welcome on [GitHub](https://github.com/rcoemans/com.brainstoday.insights-devices/issues).
 
 ## License
 

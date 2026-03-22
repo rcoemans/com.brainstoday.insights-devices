@@ -42,7 +42,15 @@
   },
   "pair": [
     {
-      "id": "device_settings"
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
     }
   ],
   "settings": [
@@ -62,8 +70,8 @@
           },
           "value": "heating/floor1/status",
           "hint": {
-            "en": "The MQTT topic to subscribe to for floor heating data",
-            "nl": "Het MQTT onderwerp om te abonneren voor vloerverwarmingsgegevens"
+            "en": "The MQTT topic to subscribe to for floor heating data. Expected JSON format: {\"flow\": 35.2, \"return\": 28.5} where 'flow' is the flow/supply temperature and 'return' is the return temperature in °C",
+            "nl": "Het MQTT onderwerp om te abonneren voor vloerverwarmingsgegevens. Verwacht JSON formaat: {\"flow\": 35.2, \"return\": 28.5} waarbij 'flow' de aanvoertemperatuur is en 'return' de retourtemperatuur in °C"
           }
         }
       ]

@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Speed State",
+    "nl": "Snelheidsstatus"
+  },
+  "min": 0,
+  "max": 255,
+  "decimals": 0,
+  "insights": true,
+  "chartType": "stepLine",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/performance.svg"
+}

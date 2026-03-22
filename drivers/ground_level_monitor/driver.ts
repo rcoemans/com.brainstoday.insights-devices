@@ -26,24 +26,20 @@ module.exports = class GroundLevelMonitorDriver extends Homey.Driver {
     }
   }
 
-  async onPair(session: any) {
-    session.setHandler('showView', async (viewId: string) => {
-      this.log('Pair view:', viewId);
-    });
-
-    session.setHandler('device_settings', async (data: any) => {
-      return {
-        name: data.name || 'Ground Level Monitor',
+  async onPairListDevices() {
+    return [
+      {
+        name: 'Ground Level Monitor',
         data: {
           id: `ground_level_${Date.now()}`
         },
         settings: {
-          mqtt_topic: data.mqtt_topic || 'sensor/crawlSpaceHeight',
-          unit: data.unit || 'cm',
-          alarm_threshold: data.alarm_threshold || 0
+          mqtt_topic: 'sensor/crawlSpaceHeight',
+          unit: 'cm',
+          alarm_threshold: 0
         }
-      };
-    });
+      }
+    ];
   }
 
 };

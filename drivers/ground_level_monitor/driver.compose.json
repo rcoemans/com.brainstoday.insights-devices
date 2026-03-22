@@ -28,7 +28,15 @@
   },
   "pair": [
     {
-      "id": "device_settings"
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
     }
   ],
   "settings": [
@@ -48,8 +56,8 @@
           },
           "value": "sensor/crawlSpaceHeight",
           "hint": {
-            "en": "The MQTT topic to subscribe to for ground level data",
-            "nl": "Het MQTT onderwerp om te abonneren voor grondniveaugegevens"
+            "en": "The MQTT topic to subscribe to for ground level data. Expected payload: a single numeric value (e.g. 42.5 representing cm)",
+            "nl": "Het MQTT onderwerp om te abonneren voor grondniveaugegevens. Verwachte payload: een enkele numerieke waarde (bijv. 42.5 voor cm)"
           }
         },
         {
