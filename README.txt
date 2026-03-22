@@ -7,6 +7,7 @@ Features:
 - Floor Heating Monitor: tracks flow/return temperatures and calculates Delta T automatically
 - Ground Level Monitor: monitors ground or water levels with optional alarm thresholds
 - NRG-Watch Itho CVE: full integration for Itho Daalderop CVE ventilation units via MQTT
+- Awtrix 3: integrates Awtrix 3 LED matrix display for monitoring and notifications
 - Custom MQTT Sensor: flexible device supporting numeric, JSON object, and JSON array payloads with custom mappings and calculated fields
 - Comprehensive flow cards: triggers for value changes, conditions with comparison operators (lt, lte, gt, gte), actions for controllable devices
 - Insights logging for all measurements
@@ -18,6 +19,7 @@ Supported Devices:
 - Floor Heating Monitor (sensor class)
 - Ground Level Monitor (sensor class)
 - NRG-Watch Itho CVE (fan class)
+- Awtrix 3 (sensor class)
 - Custom MQTT Sensor (sensor class)
 
 Setup:
@@ -91,7 +93,34 @@ DEVICE USAGE INSTRUCTIONS:
    - Conditions: speed/temperature/humidity comparisons, preset checks, online status
    - Actions: set fan speed, set fan speed with timer, set preset, send virtual remote commands, clear queue
 
-4. Custom MQTT Sensor:
+4. Awtrix 3:
+   How to use:
+   - Add device: Devices → Add Device → Insights Devices → Awtrix 3
+   - Configure MQTT topics in device settings:
+     * Base Topic (e.g., awtrix_55f85c)
+     * Status Topic (default: stats)
+     * Custom App Topic (default: custom)
+     * Notify Topic (default: notify)
+   - Device automatically subscribes to <base>/stats for telemetry
+   - Use flow cards to send notifications and display custom apps
+   
+   Capabilities:
+   - Temperature, Humidity, Brightness (%), Ambient Light (lux)
+   - WiFi Signal (dBm), Battery Level (%), Uptime (seconds)
+   - Message Count, Current App, Firmware Version, IP Address, Online Status
+   
+   Expected MQTT payload (stats):
+   - {"bat":100,"type":0,"lux":26,"bri":63,"temp":19,"hum":32,"uptime":577,"wifi_signal":-61,"messages":0,"version":"0.98","app":"","ip_address":"192.168.1.123"}
+   
+   Flow Cards:
+   - Triggers: temperature/humidity/brightness/light/signal/battery/messages/app changed, online status changed
+   - Conditions: temperature/humidity comparisons, device online status
+   - Actions: show notification, show custom app, remove app, clear display, set brightness
+   
+   More Information:
+   - For detailed Awtrix 3 documentation, visit: https://blueforcer.github.io/awtrix3/#/
+
+5. Custom MQTT Sensor:
    How to use:
    - Add device: Devices → Add Device → Insights Devices → Custom MQTT Sensor
    - Configure MQTT topic and payload type (Single Number / JSON Object / JSON Array)

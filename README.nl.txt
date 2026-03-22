@@ -7,6 +7,7 @@ Functies:
 - Vloerverwarming Monitor: volgt aanvoer-/retourtemperaturen en berekent automatisch Delta T
 - Grondniveau Monitor: bewaakt grond- of waterniveaus met optionele alarmdrempels
 - NRG-Watch Itho CVE: volledige integratie voor Itho Daalderop CVE ventilatiesystemen via MQTT
+- Awtrix 3: integreert Awtrix 3 LED matrix display voor monitoring en notificaties
 - Aangepaste MQTT Sensor: flexibel apparaat met ondersteuning voor numerieke, JSON object en JSON array payloads met aangepaste mappings en berekende velden
 - Uitgebreide flow kaarten: triggers voor waardewijzigingen, condities met vergelijkingsoperatoren (lt, lte, gt, gte), acties voor bestuurbare apparaten
 - Insights logging voor alle metingen
@@ -18,6 +19,7 @@ Ondersteunde Apparaten:
 - Vloerverwarming Monitor (sensor klasse)
 - Grondniveau Monitor (sensor klasse)
 - NRG-Watch Itho CVE (ventilator klasse)
+- Awtrix 3 (sensor klasse)
 - Aangepaste MQTT Sensor (sensor klasse)
 
 Installatie:
@@ -91,7 +93,34 @@ GEBRUIKSINSTRUCTIES APPARATEN:
    - Condities: snelheid/temperatuur/luchtvochtigheid vergelijkingen, preset controles, online status
    - Acties: ventilatorsnelheid instellen, ventilatorsnelheid met timer instellen, preset instellen, virtuele afstandsbediening commando's verzenden, wachtrij wissen
 
-4. Aangepaste MQTT Sensor:
+4. Awtrix 3:
+   Hoe te gebruiken:
+   - Apparaat toevoegen: Apparaten → Apparaat Toevoegen → Insights Devices → Awtrix 3
+   - MQTT onderwerpen configureren in apparaatinstellingen:
+     * Basis Onderwerp (bijv. awtrix_55f85c)
+     * Status Onderwerp (standaard: stats)
+     * Aangepaste App Onderwerp (standaard: custom)
+     * Notificatie Onderwerp (standaard: notify)
+   - Apparaat abonneert automatisch op <basis>/stats voor telemetrie
+   - Gebruik flow kaarten om notificaties te verzenden en aangepaste apps weer te geven
+   
+   Mogelijkheden:
+   - Temperatuur, Luchtvochtigheid, Helderheid (%), Omgevingslicht (lux)
+   - WiFi Signaal (dBm), Batterijniveau (%), Uptime (seconden)
+   - Aantal Berichten, Huidige App, Firmware Versie, IP Adres, Online Status
+   
+   Verwachte MQTT payload (stats):
+   - {"bat":100,"type":0,"lux":26,"bri":63,"temp":19,"hum":32,"uptime":577,"wifi_signal":-61,"messages":0,"version":"0.98","app":"","ip_address":"192.168.1.123"}
+   
+   Flow Kaarten:
+   - Triggers: temperatuur/luchtvochtigheid/helderheid/licht/signaal/batterij/berichten/app gewijzigd, online status gewijzigd
+   - Condities: temperatuur/luchtvochtigheid vergelijkingen, apparaat online status
+   - Acties: notificatie tonen, aangepaste app tonen, app verwijderen, scherm wissen, helderheid instellen
+   
+   Meer Informatie:
+   - Voor gedetailleerde Awtrix 3 documentatie, bezoek: https://blueforcer.github.io/awtrix3/#/
+
+5. Aangepaste MQTT Sensor:
    Hoe te gebruiken:
    - Apparaat toevoegen: Apparaten → Apparaat Toevoegen → Insights Devices → Aangepaste MQTT Sensor
    - MQTT onderwerp en payload type configureren (Enkel Getal / JSON Object / JSON Array)
