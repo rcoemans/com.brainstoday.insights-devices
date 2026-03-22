@@ -4,5 +4,8 @@
   },
   "1.0.1": {
     "en": "This is the first version of the insights-devices app"
+  },
+  "1.0.2": {
+    "en": "Added Awtrix 3 as a device"
   }
 }
