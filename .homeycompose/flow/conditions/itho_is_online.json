@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Device !{{is|is not}} online",
+    "nl": "Apparaat !{{is|is niet}} online"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=nrgwatch_itho_cve"
+    }
+  ]
+}

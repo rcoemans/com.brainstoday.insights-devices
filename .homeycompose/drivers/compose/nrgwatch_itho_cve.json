@@ -1,0 +1,159 @@
+{
+  "name": {
+    "en": "NRG-Watch Itho CVE",
+    "nl": "NRG-Watch Itho CVE"
+  },
+  "class": "fan",
+  "capabilities": [
+    "itho_fan_speed",
+    "itho_fan_preset",
+    "measure_temperature.indoor",
+    "measure_humidity.indoor",
+    "measure_air_quality",
+    "measure_temperature.supply",
+    "measure_temperature.exhaust",
+    "itho_online"
+  ],
+  "capabilitiesOptions": {
+    "itho_fan_speed": {
+      "title": {
+        "en": "Fan Speed",
+        "nl": "Ventilatorsnelheid"
+      }
+    },
+    "itho_fan_preset": {
+      "title": {
+        "en": "Preset",
+        "nl": "Preset"
+      }
+    },
+    "measure_temperature.indoor": {
+      "title": {
+        "en": "Indoor Temperature",
+        "nl": "Binnentemperatuur"
+      }
+    },
+    "measure_humidity.indoor": {
+      "title": {
+        "en": "Humidity",
+        "nl": "Luchtvochtigheid"
+      }
+    },
+    "measure_air_quality": {
+      "title": {
+        "en": "Air Quality",
+        "nl": "Luchtkwaliteit"
+      }
+    },
+    "measure_temperature.supply": {
+      "title": {
+        "en": "Supply Temperature",
+        "nl": "Aanvoertemperatuur"
+      }
+    },
+    "measure_temperature.exhaust": {
+      "title": {
+        "en": "Exhaust Temperature",
+        "nl": "Afvoertemperatuur"
+      }
+    },
+    "itho_online": {
+      "title": {
+        "en": "Online",
+        "nl": "Online"
+      }
+    }
+  },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "/drivers/nrgwatch_itho_cve/assets/images/small.png",
+    "large": "/drivers/nrgwatch_itho_cve/assets/images/large.png",
+    "xlarge": "/drivers/nrgwatch_itho_cve/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "device_settings"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "MQTT Topics",
+        "nl": "MQTT Onderwerpen"
+      },
+      "children": [
+        {
+          "id": "topic_status",
+          "type": "text",
+          "label": {
+            "en": "Status Topic",
+            "nl": "Status Onderwerp"
+          },
+          "value": "itho/ithostatus",
+          "hint": {
+            "en": "MQTT topic for status updates",
+            "nl": "MQTT onderwerp voor status updates"
+          }
+        },
+        {
+          "id": "topic_lastcmd",
+          "type": "text",
+          "label": {
+            "en": "Last Command Topic",
+            "nl": "Laatste Commando Onderwerp"
+          },
+          "value": "itho/lastcmd",
+          "hint": {
+            "en": "MQTT topic for last command",
+            "nl": "MQTT onderwerp voor laatste commando"
+          }
+        },
+        {
+          "id": "topic_state",
+          "type": "text",
+          "label": {
+            "en": "State Topic",
+            "nl": "Status Onderwerp"
+          },
+          "value": "itho/state",
+          "hint": {
+            "en": "MQTT topic for current state",
+            "nl": "MQTT onderwerp voor huidige status"
+          }
+        },
+        {
+          "id": "topic_lwt",
+          "type": "text",
+          "label": {
+            "en": "LWT Topic",
+            "nl": "LWT Onderwerp"
+          },
+          "value": "itho/LWT",
+          "hint": {
+            "en": "MQTT topic for Last Will and Testament",
+            "nl": "MQTT onderwerp voor Last Will and Testament"
+          }
+        },
+        {
+          "id": "topic_cmd",
+          "type": "text",
+          "label": {
+            "en": "Command Topic",
+            "nl": "Commando Onderwerp"
+          },
+          "value": "itho/cmd",
+          "hint": {
+            "en": "MQTT topic for sending commands",
+            "nl": "MQTT onderwerp voor het verzenden van commando's"
+          }
+        }
+      ]
+    }
+  ]
+}

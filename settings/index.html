@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT Client Settings</title>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .help-text {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .field-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        button {
+            background-color: #00A94F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #008f42;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #log-area {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            background-color: #f5f5f5;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>MQTT Client</h1>
+    <p class="help-text">MQTT client settings</p>
+
+    <h2>MQTT broker settings</h2>
+    <p class="help-text">
+        A broker must be specified for the MQTT client to connect to. The server name can be an IP address or a DNS name. 
+        A port number must also be provided. Typically, this is port 1883 for a standard connection and port 8883 for a secure connection.
+    </p>
+
+    <div class="field-group">
+        <label for="mqtt_broker">MQTT broker (IP address or DNS)</label>
+        <input type="text" id="mqtt_broker" placeholder="localhost">
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_port">Port number</label>
+        <input type="number" id="mqtt_port" placeholder="1883">
+    </div>
+
+    <div class="field-group">
+        <label>
+            <input type="checkbox" id="mqtt_use_tls">
+            Use a secure connection with the broker (TLS)
+        </label>
+    </div>
+
+    <div class="field-group">
+        <label>
+            <input type="checkbox" id="mqtt_disable_cert_validation">
+            Disable certificate validation (when using self-signed certificates)
+        </label>
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_keepalive">Keepalive time (seconds)</label>
+        <input type="number" id="mqtt_keepalive" placeholder="60">
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_username">Username</label>
+        <input type="text" id="mqtt_username" placeholder="">
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_password">Password</label>
+        <input type="password" id="mqtt_password" placeholder="">
+    </div>
+
+    <div class="field-group">
+        <label>
+            <input type="checkbox" id="mqtt_use_custom_client_id">
+            Provide your own client id to be used when connecting to the broker
+        </label>
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_client_id">Client id</label>
+        <input type="text" id="mqtt_client_id" placeholder="">
+    </div>
+
+    <h2>LWT Settings</h2>
+    <p class="help-text">
+        LWT in MQTT stands for Last Will and Testament. It is a core feature of the MQTT protocol designed for IoT and messaging 
+        applications to detect when a client disconnects unexpectedly from the MQTT broker.
+    </p>
+
+    <div class="field-group">
+        <label>
+            <input type="checkbox" id="mqtt_use_lwt">
+            Use LWT
+        </label>
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_lwt_topic">Topic for LWT</label>
+        <input type="text" id="mqtt_lwt_topic" placeholder="">
+    </div>
+
+    <div class="field-group">
+        <label for="mqtt_lwt_message">LWT message</label>
+        <input type="text" id="mqtt_lwt_message" placeholder="">
+    </div>
+
+    <div class="field-group">
+        <button id="save-button">Save settings</button>
+        <div id="status-message"></div>
+    </div>
+
+    <h2>MQTT broker log</h2>
+    <div class="field-group">
+        <button id="retrieve-log-button">Retrieve log</button>
+    </div>
+    <div id="log-area"></div>
+
+    <script>
+        function onHomeyReady(Homey) {
+            Homey.ready();
+
+            // Load settings
+            Homey.get('mqtt_broker', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_broker').value = value;
+            });
+            Homey.get('mqtt_port', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_port').value = value;
+            });
+            Homey.get('mqtt_use_tls', function(err, value) {
+                if (!err) document.getElementById('mqtt_use_tls').checked = value || false;
+            });
+            Homey.get('mqtt_disable_cert_validation', function(err, value) {
+                if (!err) document.getElementById('mqtt_disable_cert_validation').checked = value || false;
+            });
+            Homey.get('mqtt_keepalive', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_keepalive').value = value;
+            });
+            Homey.get('mqtt_username', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_username').value = value;
+            });
+            Homey.get('mqtt_password', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_password').value = value;
+            });
+            Homey.get('mqtt_use_custom_client_id', function(err, value) {
+                if (!err) document.getElementById('mqtt_use_custom_client_id').checked = value || false;
+            });
+            Homey.get('mqtt_client_id', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_client_id').value = value;
+            });
+            Homey.get('mqtt_use_lwt', function(err, value) {
+                if (!err) document.getElementById('mqtt_use_lwt').checked = value || false;
+            });
+            Homey.get('mqtt_lwt_topic', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_lwt_topic').value = value;
+            });
+            Homey.get('mqtt_lwt_message', function(err, value) {
+                if (!err && value) document.getElementById('mqtt_lwt_message').value = value;
+            });
+
+            // Save button
+            document.getElementById('save-button').addEventListener('click', function() {
+                const settings = {
+                    mqtt_broker: document.getElementById('mqtt_broker').value,
+                    mqtt_port: parseInt(document.getElementById('mqtt_port').value) || 1883,
+                    mqtt_use_tls: document.getElementById('mqtt_use_tls').checked,
+                    mqtt_disable_cert_validation: document.getElementById('mqtt_disable_cert_validation').checked,
+                    mqtt_keepalive: parseInt(document.getElementById('mqtt_keepalive').value) || 60,
+                    mqtt_username: document.getElementById('mqtt_username').value,
+                    mqtt_password: document.getElementById('mqtt_password').value,
+                    mqtt_use_custom_client_id: document.getElementById('mqtt_use_custom_client_id').checked,
+                    mqtt_client_id: document.getElementById('mqtt_client_id').value,
+                    mqtt_use_lwt: document.getElementById('mqtt_use_lwt').checked,
+                    mqtt_lwt_topic: document.getElementById('mqtt_lwt_topic').value,
+                    mqtt_lwt_message: document.getElementById('mqtt_lwt_message').value
+                };
+
+                for (const key in settings) {
+                    Homey.set(key, settings[key]);
+                }
+
+                Homey.api('POST', '/reconnect', {}, function(err, result) {
+                    const statusDiv = document.getElementById('status-message');
+                    if (err) {
+                        statusDiv.innerHTML = '<div class="status error">Error: ' + err.message + '</div>';
+                    } else {
+                        statusDiv.innerHTML = '<div class="status success">Settings saved and MQTT client reconnected</div>';
+                        setTimeout(function() {
+                            statusDiv.innerHTML = '';
+                        }, 3000);
+                    }
+                });
+            });
+
+            // Retrieve log button
+            document.getElementById('retrieve-log-button').addEventListener('click', function() {
+                Homey.api('GET', '/log', {}, function(err, result) {
+                    if (err) {
+                        document.getElementById('log-area').textContent = 'Error retrieving log: ' + err.message;
+                    } else {
+                        document.getElementById('log-area').textContent = result.log.join('\n');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

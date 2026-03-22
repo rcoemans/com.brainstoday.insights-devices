@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "Mapped value changed",
+    "nl": "Gemapte waarde gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=custom_mqtt_sensor"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "field",
+      "type": "string",
+      "title": {
+        "en": "Field",
+        "nl": "Veld"
+      },
+      "example": "Temperature"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Value",
+        "nl": "Waarde"
+      },
+      "example": 22.5
+    }
+  ]
+}

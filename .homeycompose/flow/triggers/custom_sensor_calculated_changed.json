@@ -1,0 +1,33 @@
+{
+  "title": {
+    "en": "Calculated value changed",
+    "nl": "Berekende waarde gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=custom_mqtt_sensor"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "field",
+      "type": "string",
+      "title": {
+        "en": "Field",
+        "nl": "Veld"
+      },
+      "example": "Delta T"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Value",
+        "nl": "Waarde"
+      },
+      "example": 5.4
+    }
+  ]
+}

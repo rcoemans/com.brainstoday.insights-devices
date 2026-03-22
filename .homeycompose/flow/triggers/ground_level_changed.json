@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "Ground level changed",
+    "nl": "Grondniveau gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=ground_level_monitor"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Level",
+        "nl": "Niveau"
+      },
+      "example": 18.4
+    }
+  ]
+}

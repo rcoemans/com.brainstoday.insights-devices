@@ -1,0 +1,27 @@
+{
+  "title": {
+    "en": "Set fan speed",
+    "nl": "Stel ventilatorsnelheid in"
+  },
+  "titleFormatted": {
+    "en": "Set fan speed to [[speed]] rpm",
+    "nl": "Stel ventilatorsnelheid in op [[speed]] rpm"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=nrgwatch_itho_cve"
+    },
+    {
+      "type": "number",
+      "name": "speed",
+      "min": 0,
+      "max": 3000,
+      "placeholder": {
+        "en": "Speed (rpm)",
+        "nl": "Snelheid (rpm)"
+      }
+    }
+  ]
+}

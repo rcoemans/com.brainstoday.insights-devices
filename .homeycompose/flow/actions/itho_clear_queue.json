@@ -1,0 +1,13 @@
+{
+  "title": {
+    "en": "Clear command queue",
+    "nl": "Wis commando wachtrij"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=nrgwatch_itho_cve"
+    }
+  ]
+}

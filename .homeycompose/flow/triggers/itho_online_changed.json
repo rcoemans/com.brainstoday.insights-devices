@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "Online status changed",
+    "nl": "Online status gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=nrgwatch_itho_cve"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "online",
+      "type": "boolean",
+      "title": {
+        "en": "Online",
+        "nl": "Online"
+      },
+      "example": true
+    }
+  ]
+}

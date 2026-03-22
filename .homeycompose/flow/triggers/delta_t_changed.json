@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "Delta T changed",
+    "nl": "Delta T gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=floor_heating_monitor"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Delta T",
+        "nl": "Delta T"
+      },
+      "example": 5.4
+    }
+  ]
+}

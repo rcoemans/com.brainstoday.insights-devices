@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "Fan speed changed",
+    "nl": "Ventilatorsnelheid gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=nrgwatch_itho_cve"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Speed",
+        "nl": "Snelheid"
+      },
+      "example": 920
+    }
+  ]
+}

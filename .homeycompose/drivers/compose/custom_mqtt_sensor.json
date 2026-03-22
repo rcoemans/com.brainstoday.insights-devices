@@ -1,0 +1,88 @@
+{
+  "name": {
+    "en": "Custom MQTT Sensor",
+    "nl": "Aangepaste MQTT Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "/drivers/custom_mqtt_sensor/assets/images/small.png",
+    "large": "/drivers/custom_mqtt_sensor/assets/images/large.png",
+    "xlarge": "/drivers/custom_mqtt_sensor/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "MQTT Settings",
+        "nl": "MQTT Instellingen"
+      },
+      "children": [
+        {
+          "id": "mqtt_topic",
+          "type": "text",
+          "label": {
+            "en": "MQTT Topic",
+            "nl": "MQTT Onderwerp"
+          },
+          "value": "",
+          "hint": {
+            "en": "The MQTT topic to subscribe to",
+            "nl": "Het MQTT onderwerp om te abonneren"
+          }
+        },
+        {
+          "id": "payload_type",
+          "type": "dropdown",
+          "label": {
+            "en": "Payload Type",
+            "nl": "Payload Type"
+          },
+          "value": "number",
+          "values": [
+            {
+              "id": "number",
+              "label": {
+                "en": "Single Number",
+                "nl": "Enkel Getal"
+              }
+            },
+            {
+              "id": "json_object",
+              "label": {
+                "en": "JSON Object",
+                "nl": "JSON Object"
+              }
+            },
+            {
+              "id": "json_array",
+              "label": {
+                "en": "JSON Array",
+                "nl": "JSON Array"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

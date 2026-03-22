@@ -1,0 +1,84 @@
+{
+  "name": {
+    "en": "Ground Level Monitor",
+    "nl": "Grondniveau Monitor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_level.ground"
+  ],
+  "capabilitiesOptions": {
+    "measure_level.ground": {
+      "title": {
+        "en": "Ground Level",
+        "nl": "Grondniveau"
+      }
+    }
+  },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "/drivers/ground_level_monitor/assets/images/small.png",
+    "large": "/drivers/ground_level_monitor/assets/images/large.png",
+    "xlarge": "/drivers/ground_level_monitor/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "device_settings"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "MQTT Settings",
+        "nl": "MQTT Instellingen"
+      },
+      "children": [
+        {
+          "id": "mqtt_topic",
+          "type": "text",
+          "label": {
+            "en": "MQTT Topic",
+            "nl": "MQTT Onderwerp"
+          },
+          "value": "sensor/crawlSpaceHeight",
+          "hint": {
+            "en": "The MQTT topic to subscribe to for ground level data",
+            "nl": "Het MQTT onderwerp om te abonneren voor grondniveaugegevens"
+          }
+        },
+        {
+          "id": "unit",
+          "type": "text",
+          "label": {
+            "en": "Unit",
+            "nl": "Eenheid"
+          },
+          "value": "cm",
+          "hint": {
+            "en": "Measurement unit (e.g., cm, m)",
+            "nl": "Meeteenheid (bijv. cm, m)"
+          }
+        },
+        {
+          "id": "alarm_threshold",
+          "type": "number",
+          "label": {
+            "en": "Alarm Threshold (optional)",
+            "nl": "Alarmdrempel (optioneel)"
+          },
+          "value": 0,
+          "hint": {
+            "en": "Trigger alarm when level exceeds this value (0 = disabled)",
+            "nl": "Activeer alarm wanneer niveau deze waarde overschrijdt (0 = uitgeschakeld)"
+          }
+        }
+      ]
+    }
+  ]
+}

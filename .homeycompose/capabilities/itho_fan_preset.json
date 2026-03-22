@@ -1,0 +1,55 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Fan Preset",
+    "nl": "Ventilator Preset"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    {
+      "id": "low",
+      "title": {
+        "en": "Low",
+        "nl": "Laag"
+      }
+    },
+    {
+      "id": "medium",
+      "title": {
+        "en": "Medium",
+        "nl": "Middel"
+      }
+    },
+    {
+      "id": "high",
+      "title": {
+        "en": "High",
+        "nl": "Hoog"
+      }
+    },
+    {
+      "id": "timer1",
+      "title": {
+        "en": "Timer 1",
+        "nl": "Timer 1"
+      }
+    },
+    {
+      "id": "timer2",
+      "title": {
+        "en": "Timer 2",
+        "nl": "Timer 2"
+      }
+    },
+    {
+      "id": "timer3",
+      "title": {
+        "en": "Timer 3",
+        "nl": "Timer 3"
+      }
+    }
+  ],
+  "icon": "/assets/icons/on-off-button.svg"
+}

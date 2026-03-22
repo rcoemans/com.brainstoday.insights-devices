@@ -1,0 +1,72 @@
+{
+  "name": {
+    "en": "Floor Heating Monitor",
+    "nl": "Vloerverwarming Monitor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_temperature.flow",
+    "measure_temperature.return",
+    "measure_temperature.delta"
+  ],
+  "capabilitiesOptions": {
+    "measure_temperature.flow": {
+      "title": {
+        "en": "Flow Temperature (In)",
+        "nl": "Aanvoertemperatuur (In)"
+      }
+    },
+    "measure_temperature.return": {
+      "title": {
+        "en": "Return Temperature (Out)",
+        "nl": "Retourtemperatuur (Uit)"
+      }
+    },
+    "measure_temperature.delta": {
+      "title": {
+        "en": "Delta T (Δt)",
+        "nl": "Delta T (Δt)"
+      }
+    }
+  },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "/drivers/floor_heating_monitor/assets/images/small.png",
+    "large": "/drivers/floor_heating_monitor/assets/images/large.png",
+    "xlarge": "/drivers/floor_heating_monitor/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "device_settings"
+    }
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "MQTT Settings",
+        "nl": "MQTT Instellingen"
+      },
+      "children": [
+        {
+          "id": "mqtt_topic",
+          "type": "text",
+          "label": {
+            "en": "MQTT Topic",
+            "nl": "MQTT Onderwerp"
+          },
+          "value": "heating/floor1/status",
+          "hint": {
+            "en": "The MQTT topic to subscribe to for floor heating data",
+            "nl": "Het MQTT onderwerp om te abonneren voor vloerverwarmingsgegevens"
+          }
+        }
+      ]
+    }
+  ]
+}

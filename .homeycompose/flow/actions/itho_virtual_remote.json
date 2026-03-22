@@ -1,0 +1,44 @@
+{
+  "title": {
+    "en": "Send virtual remote command",
+    "nl": "Stuur virtuele afstandsbediening commando"
+  },
+  "titleFormatted": {
+    "en": "Send virtual remote command [[command]]",
+    "nl": "Stuur virtuele afstandsbediening commando [[command]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=nrgwatch_itho_cve"
+    },
+    {
+      "type": "dropdown",
+      "name": "command",
+      "values": [
+        {
+          "id": "low",
+          "label": {
+            "en": "Low",
+            "nl": "Laag"
+          }
+        },
+        {
+          "id": "medium",
+          "label": {
+            "en": "Medium",
+            "nl": "Middel"
+          }
+        },
+        {
+          "id": "high",
+          "label": {
+            "en": "High",
+            "nl": "Hoog"
+          }
+        }
+      ]
+    }
+  ]
+}

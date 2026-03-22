@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "Flow temperature changed",
+    "nl": "Aanvoertemperatuur gewijzigd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=floor_heating_monitor"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Temperature",
+        "nl": "Temperatuur"
+      },
+      "example": 35.2
+    }
+  ]
+}

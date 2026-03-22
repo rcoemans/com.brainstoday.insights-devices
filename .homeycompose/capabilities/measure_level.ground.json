@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Ground Level",
+    "nl": "Grondniveau"
+  },
+  "units": {
+    "en": "cm"
+  },
+  "decimals": 1,
+  "insights": true,
+  "chartType": "spline",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/graph.svg"
+}

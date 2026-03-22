@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Supply Temperature",
+    "nl": "Aanvoertemperatuur"
+  },
+  "units": {
+    "en": "°C"
+  },
+  "decimals": 2,
+  "insights": true,
+  "chartType": "spline",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icons/thermometer.svg"
+}

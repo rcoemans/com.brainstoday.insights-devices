@@ -1,0 +1,59 @@
+{
+  "title": {
+    "en": "Return temperature !{{is|is not}} ...",
+    "nl": "Retourtemperatuur !{{is|is niet}} ..."
+  },
+  "titleFormatted": {
+    "en": "Return temperature !{{is|is not}} [[operator]] [[value]]°C",
+    "nl": "Retourtemperatuur !{{is|is niet}} [[operator]] [[value]]°C"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=floor_heating_monitor"
+    },
+    {
+      "type": "dropdown",
+      "name": "operator",
+      "values": [
+        {
+          "id": "lt",
+          "label": {
+            "en": "lower than",
+            "nl": "lager dan"
+          }
+        },
+        {
+          "id": "lte",
+          "label": {
+            "en": "lower than or equal",
+            "nl": "lager dan of gelijk aan"
+          }
+        },
+        {
+          "id": "gt",
+          "label": {
+            "en": "greater than",
+            "nl": "hoger dan"
+          }
+        },
+        {
+          "id": "gte",
+          "label": {
+            "en": "greater than or equal",
+            "nl": "hoger dan of gelijk aan"
+          }
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "name": "value",
+      "placeholder": {
+        "en": "Temperature",
+        "nl": "Temperatuur"
+      }
+    }
+  ]
+}

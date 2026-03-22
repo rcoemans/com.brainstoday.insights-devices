@@ -1,0 +1,59 @@
+{
+  "title": {
+    "en": "Ground level !{{is|is not}} ...",
+    "nl": "Grondniveau !{{is|is niet}} ..."
+  },
+  "titleFormatted": {
+    "en": "Ground level !{{is|is not}} [[operator]] [[value]]",
+    "nl": "Grondniveau !{{is|is niet}} [[operator]] [[value]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=ground_level_monitor"
+    },
+    {
+      "type": "dropdown",
+      "name": "operator",
+      "values": [
+        {
+          "id": "lt",
+          "label": {
+            "en": "lower than",
+            "nl": "lager dan"
+          }
+        },
+        {
+          "id": "lte",
+          "label": {
+            "en": "lower than or equal",
+            "nl": "lager dan of gelijk aan"
+          }
+        },
+        {
+          "id": "gt",
+          "label": {
+            "en": "greater than",
+            "nl": "hoger dan"
+          }
+        },
+        {
+          "id": "gte",
+          "label": {
+            "en": "greater than or equal",
+            "nl": "hoger dan of gelijk aan"
+          }
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "name": "value",
+      "placeholder": {
+        "en": "Level",
+        "nl": "Niveau"
+      }
+    }
+  ]
+}
