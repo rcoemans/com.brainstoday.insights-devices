@@ -37,10 +37,15 @@ Homey app for creating **predefined and custom virtual measurement devices** tha
 
 Search for **"Insights Devices"** in the Homey App Store.
 
-### Via CLI (development)
+### Via CLI (sideloading / development)
 
 ```bash
+npm install -g homey
+git clone https://github.com/rcoemans/com.brainstoday.insights-devices
+cd com.brainstoday.insights-devices
 npm install
+npm run build
+homey login
 homey app install
 ```
 
