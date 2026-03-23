@@ -17,7 +17,7 @@ source: user input
 ### Common
 
 - As we already build a full MQTT client in this app, I want to add some MQTT generic flow cards so this app can also act as a generic MQTT client:
-  - Action card(s):
+  - Trigger card(s):
     - 'Trigger when a message is received on {Topic}':
 	  - {Topic} = String
 	  - Available TAGs:
@@ -83,6 +83,39 @@ source: user input
 
 - Apply the changes.
 - Update README files:
+  - /README.md
+  - /README.txt
+  - /README.nl.txt
+
+
+
+---
+
+
+
+Some more changes:
+
+## Changes
+
+### Common
+
+- As we already build a full MQTT client in this app, I want to add some MQTT generic flow cards so this app can also act as a generic MQTT client:
+  - Trigger card(s):
+    - 'Trigger when a message is received on {Topic}':
+	  - {Topic} = String
+	  - Available TAGs:
+		- Informational text: "Wanneer deze kaart start worden de volgende tags beschikbaar om te gebruiken."
+	    - 'Message received', informational text for tag: "Received message"
+		- 'Name Topic', informational text for tag: "broker/+/something/#"
+
+### Awtrix 3 device
+
+- The capability for the 'Awtrix 3' device: 'Uptime' is in seconds, I want to have this calculated into hours.
+
+## Tasks
+
+- Apply the changes.
+- Update README files to reflect the changes:
   - /README.md
   - /README.txt
   - /README.nl.txt

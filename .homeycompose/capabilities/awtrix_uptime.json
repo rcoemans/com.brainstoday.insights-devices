@@ -5,12 +5,13 @@
     "nl": "Uptime"
   },
   "units": {
-    "en": "s",
-    "nl": "s"
+    "en": "h",
+    "nl": "h"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
   "icon": "/drivers/awtrix_3/assets/icon.svg",
-  "insights": true
+  "insights": true,
+  "decimals": 2
 }

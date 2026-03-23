@@ -247,7 +247,7 @@ Integrates Awtrix 3 LED matrix display for monitoring device telemetry and displ
 - Ambient Light (lux)
 - WiFi Signal (dBm)
 - Battery Level (%)
-- Uptime (seconds)
+- Uptime (hours)
 - Message Count
 - Current App
 - Firmware Version
@@ -298,6 +298,8 @@ Integrates Awtrix 3 LED matrix display for monitoring device telemetry and displ
   "ip_address": "192.168.1.123"
 }
 ```
+
+Note: The `uptime` value in the MQTT payload is in seconds and will be automatically converted to hours for display.
 
 **Flow Cards:**
 - Triggers: Temperature/humidity/brightness/light/signal/battery/messages/app changed, online status changed

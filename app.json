@@ -436,8 +436,8 @@
           "nl": "Bericht ontvangen op onderwerp [[topic]]"
         },
         "hint": {
-          "en": "Triggers when a message is received on the specified MQTT topic. Supports wildcards: + (single level) and # (multi level).",
-          "nl": "Triggert wanneer een bericht wordt ontvangen op het opgegeven MQTT onderwerp. Ondersteunt wildcards: + (enkel niveau) en # (meerdere niveaus)."
+          "en": "Triggers when a message is received on the specified MQTT topic. Supports wildcards: + (single level) and # (multi level).\n\nWhen this card triggers, the following tags become available to use:\n- Message received: Received message\n- Topic: broker/+/something/#",
+          "nl": "Triggert wanneer een bericht wordt ontvangen op het opgegeven MQTT onderwerp. Ondersteunt wildcards: + (enkel niveau) en # (meerdere niveaus).\n\nWanneer deze kaart start worden de volgende tags beschikbaar om te gebruiken:\n- Ontvangen bericht: Ontvangen bericht\n- Onderwerp: broker/+/iets/#"
         },
         "args": [
           {
@@ -2677,14 +2677,15 @@
         "nl": "Uptime"
       },
       "units": {
-        "en": "s",
-        "nl": "s"
+        "en": "h",
+        "nl": "h"
       },
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/drivers/awtrix_3/assets/icon.svg",
-      "insights": true
+      "insights": true,
+      "decimals": 2
     },
     "awtrix_version": {
       "type": "string",

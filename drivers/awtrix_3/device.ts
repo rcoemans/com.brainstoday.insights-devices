@@ -183,7 +183,9 @@ module.exports = class Awtrix3Device extends Homey.Device {
       }
 
       if (typeof data.uptime === 'number' && !isNaN(data.uptime)) {
-        this.setCapabilityValue('awtrix_uptime', data.uptime).catch(this.error);
+        // Convert seconds to hours
+        const uptimeHours = Number((data.uptime / 3600).toFixed(2));
+        this.setCapabilityValue('awtrix_uptime', uptimeHours).catch(this.error);
       }
 
       if (typeof data.messages === 'number' && !isNaN(data.messages)) {

@@ -8,8 +8,8 @@
     "nl": "Bericht ontvangen op onderwerp [[topic]]"
   },
   "hint": {
-    "en": "Triggers when a message is received on the specified MQTT topic. Supports wildcards: + (single level) and # (multi level).",
-    "nl": "Triggert wanneer een bericht wordt ontvangen op het opgegeven MQTT onderwerp. Ondersteunt wildcards: + (enkel niveau) en # (meerdere niveaus)."
+    "en": "Triggers when a message is received on the specified MQTT topic. Supports wildcards: + (single level) and # (multi level).\n\nWhen this card triggers, the following tags become available to use:\n- Message received: Received message\n- Topic: broker/+/something/#",
+    "nl": "Triggert wanneer een bericht wordt ontvangen op het opgegeven MQTT onderwerp. Ondersteunt wildcards: + (enkel niveau) en # (meerdere niveaus).\n\nWanneer deze kaart start worden de volgende tags beschikbaar om te gebruiken:\n- Ontvangen bericht: Ontvangen bericht\n- Onderwerp: broker/+/iets/#"
   },
   "args": [
     {
