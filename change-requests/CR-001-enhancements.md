@@ -119,3 +119,26 @@ Some more changes:
   - /README.md
   - /README.txt
   - /README.nl.txt
+
+
+
+---
+
+
+
+Some more changes:
+
+## Changes
+
+### Itho CVE device
+
+- Create an action card: 'Stel ventilatorsnelheid in op {Waarde}' 
+    - {Waarde} = Value between 0 and 255, also add informational message to explain that this is NOT rpm but a value between 0 and 255. This value will need to be send as `{"speed":{Waarde}}`, example: `{"speed":20}` on the MQTT topic which is defined for the device for: 'Commando Onderwerp' (default = `itho/cmd`.
+
+## Tasks
+
+- Apply the changes.
+- Update README files to reflect the changes:
+  - /README.md
+  - /README.txt
+  - /README.nl.txt

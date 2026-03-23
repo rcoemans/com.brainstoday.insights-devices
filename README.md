@@ -207,6 +207,7 @@ Integrates Itho Daalderop CVE ventilation units through the NRG-Watch MQTT add-o
 5. **Control the fan:**
    - Use the device card to change presets
    - Use flow cards to set specific speeds or send commands
+   - **Set fan speed value (0-255):** Use this action card to set the fan speed using a value between 0 and 255 (NOT rpm). The value is sent as `{"speed":value}` to the command topic.
    - All commands are published to the command topic
 
 **Expected MQTT Payload (ithostatus):**
@@ -232,7 +233,7 @@ Integrates Itho Daalderop CVE ventilation units through the NRG-Watch MQTT add-o
 **Flow Cards:**
 - Triggers: Fan speed/preset/sensor changes, online status changes
 - Conditions: Speed/temperature/humidity comparisons, preset checks, online status
-- Actions: Set fan speed, set fan speed with timer, set preset, send virtual remote commands, clear command queue
+- Actions: Set fan speed (rpm), set fan speed with timer (rpm), set fan speed value (0-255), set preset, send virtual remote commands, clear command queue
 
 ---
 

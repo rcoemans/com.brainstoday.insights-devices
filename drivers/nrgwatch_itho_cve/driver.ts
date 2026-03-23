@@ -56,6 +56,11 @@ module.exports = class NRGWatchIthoCVEDriver extends Homey.Driver {
     clearQueueAction.registerRunListener(async (args, state) => {
       await args.device.clearQueue();
     });
+
+    const setSpeedValueAction = this.homey.flow.getActionCard('itho_set_speed_value');
+    setSpeedValueAction.registerRunListener(async (args, state) => {
+      await args.device.setSpeedValue(args.value);
+    });
   }
 
   private compareValues(actual: number, operator: string, target: number): boolean {

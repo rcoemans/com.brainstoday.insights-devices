@@ -1370,6 +1370,42 @@
       },
       {
         "title": {
+          "en": "Set fan speed value",
+          "nl": "Stel ventilatorsnelheid in op"
+        },
+        "titleFormatted": {
+          "en": "Set fan speed to value [[value]]",
+          "nl": "Stel ventilatorsnelheid in op [[value]]"
+        },
+        "hint": {
+          "en": "Set the fan speed using a value between 0 and 255. This is NOT rpm but a speed value. The value will be sent as {\"speed\":value} to the command topic.",
+          "nl": "Stel de ventilatorsnelheid in met een waarde tussen 0 en 255. Dit is NIET rpm maar een snelheidswaarde. De waarde wordt verzonden als {\"speed\":waarde} naar het commando onderwerp."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=nrgwatch_itho_cve"
+          },
+          {
+            "type": "number",
+            "name": "value",
+            "min": 0,
+            "max": 255,
+            "placeholder": {
+              "en": "Value (0-255)",
+              "nl": "Waarde (0-255)"
+            },
+            "title": {
+              "en": "Speed value",
+              "nl": "Snelheidswaarde"
+            }
+          }
+        ],
+        "id": "itho_set_speed_value"
+      },
+      {
+        "title": {
           "en": "Send virtual remote command",
           "nl": "Stuur virtuele afstandsbediening commando"
         },

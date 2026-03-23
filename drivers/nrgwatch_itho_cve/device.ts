@@ -316,4 +316,19 @@ module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
     }
   }
 
+  async setSpeedValue(value: number) {
+    const app = this.homey.app as any;
+    const cmdTopic = this.getSetting('topic_cmd') || 'itho/cmd';
+    
+    const payload = { speed: value };
+
+    try {
+      await app.mqttManager.publish(cmdTopic, JSON.stringify(payload));
+      this.log(`Set fan speed value to: ${value}`);
+    } catch (error) {
+      this.error('Failed to set speed value:', error);
+      throw error;
+    }
+  }
+
 };
