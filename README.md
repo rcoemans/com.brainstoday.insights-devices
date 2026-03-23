@@ -1,7 +1,7 @@
 # Insights Devices
 
 [![Homey App](https://img.shields.io/badge/Homey-App%20Store-00A94F?logo=homey)](https://homey.app/en-nl/app/com.brainstoday.insights-devices/Insights-Devices/)
-[![Homey App Test](https://img.shields.io/badge/Homey-Test-App%20Store-FFA500?logo=homey)](https://homey.app/en-nl/app/com.brainstoday.insights-devices/Insights-Devices/test/)
+[![Homey App Test](https://img.shields.io/badge/Homey-Test%20App-FFA500?logo=homey)](https://homey.app/en-nl/app/com.brainstoday.insights-devices/Insights-Devices/test/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 
 > App has not yet been submitted for certification but is available via [test](https://homey.app/en-nl/app/com.brainstoday.insights-devices/Insights-Devices/test/) link.
