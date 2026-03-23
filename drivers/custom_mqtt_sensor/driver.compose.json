@@ -4,6 +4,7 @@
     "nl": "Aangepaste MQTT Sensor"
   },
   "class": "sensor",
+  "icon": "{{driverAssetsPath}}/icon.svg",
   "capabilities": [],
   "platforms": [
     "local"

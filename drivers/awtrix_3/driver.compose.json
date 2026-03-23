@@ -4,6 +4,7 @@
     "nl": "Awtrix 3"
   },
   "class": "sensor",
+  "icon": "{{driverAssetsPath}}/icon.svg",
   "capabilities": [
     "measure_temperature",
     "measure_humidity",

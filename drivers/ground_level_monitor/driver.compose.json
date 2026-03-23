@@ -4,6 +4,7 @@
     "nl": "Grondniveau Monitor"
   },
   "class": "sensor",
+  "icon": "{{driverAssetsPath}}/icon.svg",
   "capabilities": [
     "ground_level"
   ],

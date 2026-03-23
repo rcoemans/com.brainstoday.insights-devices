@@ -31,6 +31,7 @@
       "path": "/reconnect"
     }
   },
+  "icon": "/assets/icon.svg",
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
@@ -1595,6 +1596,7 @@
         "nl": "Awtrix 3"
       },
       "class": "sensor",
+      "icon": "/drivers/awtrix_3/assets/icon.svg",
       "capabilities": [
         "measure_temperature",
         "measure_humidity",
@@ -1752,6 +1754,7 @@
         "nl": "Aangepaste MQTT Sensor"
       },
       "class": "sensor",
+      "icon": "/drivers/custom_mqtt_sensor/assets/icon.svg",
       "capabilities": [],
       "platforms": [
         "local"
@@ -2233,6 +2236,7 @@
         "nl": "Vloerverwarming Monitor"
       },
       "class": "sensor",
+      "icon": "/drivers/floor_heating_monitor/assets/icon.svg",
       "capabilities": [
         "measure_temperature.flow",
         "measure_temperature.return",
@@ -2314,6 +2318,7 @@
         "nl": "Grondniveau Monitor"
       },
       "class": "sensor",
+      "icon": "/drivers/ground_level_monitor/assets/icon.svg",
       "capabilities": [
         "ground_level"
       ],
@@ -2407,6 +2412,7 @@
         "nl": "NRG-Watch Itho CVE"
       },
       "class": "fan",
+      "icon": "/drivers/nrgwatch_itho_cve/assets/icon.svg",
       "capabilities": [
         "itho_speed_state",
         "itho_fan_speed",

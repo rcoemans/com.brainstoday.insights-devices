@@ -4,6 +4,7 @@
     "nl": "Vloerverwarming Monitor"
   },
   "class": "sensor",
+  "icon": "{{driverAssetsPath}}/icon.svg",
   "capabilities": [
     "measure_temperature.flow",
     "measure_temperature.return",

@@ -4,6 +4,7 @@
     "nl": "NRG-Watch Itho CVE"
   },
   "class": "fan",
+  "icon": "{{driverAssetsPath}}/icon.svg",
   "capabilities": [
     "itho_speed_state",
     "itho_fan_speed",
