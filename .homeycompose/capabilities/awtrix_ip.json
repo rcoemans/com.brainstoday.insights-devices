@@ -7,5 +7,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/assets/icon.svg"
+  "icon": "/drivers/awtrix_3/assets/icon.svg"
 }

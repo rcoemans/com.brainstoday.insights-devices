@@ -249,6 +249,31 @@ export default class MQTTManager {
         }
       }
     }
+
+    // Trigger generic MQTT flow card
+    this.app.homey.flow.getTriggerCard('mqtt_message_received')
+      .trigger({
+        message: message.toString(),
+        topic: topic
+      }, {
+        topic: topic
+      })
+      .catch((error) => {
+        this.error('Error triggering mqtt_message_received:', error);
+      });
+  }
+
+  matchTopic(pattern: string, topic: string): boolean {
+    // Convert MQTT topic pattern to regex
+    // + matches a single level
+    // # matches multiple levels (must be at end)
+    const regexPattern = pattern
+      .replace(/\+/g, '[^/]+')
+      .replace(/#$/, '.*')
+      .replace(/\//g, '\\/');
+    
+    const regex = new RegExp(`^${regexPattern}$`);
+    return regex.test(topic);
   }
 
   isConnected(): boolean {

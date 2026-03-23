@@ -428,6 +428,61 @@
       },
       {
         "title": {
+          "en": "Message received on topic",
+          "nl": "Bericht ontvangen op onderwerp"
+        },
+        "titleFormatted": {
+          "en": "Message received on topic [[topic]]",
+          "nl": "Bericht ontvangen op onderwerp [[topic]]"
+        },
+        "hint": {
+          "en": "Triggers when a message is received on the specified MQTT topic. Supports wildcards: + (single level) and # (multi level).",
+          "nl": "Triggert wanneer een bericht wordt ontvangen op het opgegeven MQTT onderwerp. Ondersteunt wildcards: + (enkel niveau) en # (meerdere niveaus)."
+        },
+        "args": [
+          {
+            "name": "topic",
+            "type": "text",
+            "placeholder": {
+              "en": "broker/+/something/#",
+              "nl": "broker/+/iets/#"
+            },
+            "title": {
+              "en": "Topic",
+              "nl": "Onderwerp"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "message",
+            "type": "string",
+            "title": {
+              "en": "Message received",
+              "nl": "Ontvangen bericht"
+            },
+            "example": {
+              "en": "Received message",
+              "nl": "Ontvangen bericht"
+            }
+          },
+          {
+            "name": "topic",
+            "type": "string",
+            "title": {
+              "en": "Topic",
+              "nl": "Onderwerp"
+            },
+            "example": {
+              "en": "broker/device/status",
+              "nl": "broker/apparaat/status"
+            }
+          }
+        ],
+        "id": "mqtt_message_received"
+      },
+      {
+        "title": {
           "en": "Return temperature changed",
           "nl": "Retourtemperatuur gewijzigd"
         },
@@ -1357,6 +1412,143 @@
           }
         ],
         "id": "itho_virtual_remote"
+      },
+      {
+        "title": {
+          "en": "Send message on topic (advanced)",
+          "nl": "Verzend bericht op onderwerp (geavanceerd)"
+        },
+        "titleFormatted": {
+          "en": "Send [[message]] on topic [[topic]] with QoS [[qos]] and retain [[retain]]",
+          "nl": "Verzend [[message]] op onderwerp [[topic]] met QoS [[qos]] en retain [[retain]]"
+        },
+        "hint": {
+          "en": "Publishes a message to the specified MQTT topic with custom QoS and retain settings.",
+          "nl": "Publiceert een bericht naar het opgegeven MQTT onderwerp met aangepaste QoS en retain instellingen."
+        },
+        "args": [
+          {
+            "name": "message",
+            "type": "text",
+            "placeholder": {
+              "en": "Message to send",
+              "nl": "Te verzenden bericht"
+            },
+            "title": {
+              "en": "Message",
+              "nl": "Bericht"
+            }
+          },
+          {
+            "name": "topic",
+            "type": "text",
+            "placeholder": {
+              "en": "broker/device/command",
+              "nl": "broker/apparaat/commando"
+            },
+            "title": {
+              "en": "Topic",
+              "nl": "Onderwerp"
+            }
+          },
+          {
+            "name": "qos",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "QoS 0 (At most once)",
+                  "nl": "QoS 0 (Hoogstens eenmaal)"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "QoS 1 (At least once)",
+                  "nl": "QoS 1 (Minstens eenmaal)"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "QoS 2 (Exactly once)",
+                  "nl": "QoS 2 (Precies eenmaal)"
+                }
+              }
+            ],
+            "title": {
+              "en": "Quality of Service",
+              "nl": "Kwaliteit van Service"
+            }
+          },
+          {
+            "name": "retain",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "false",
+                "label": {
+                  "en": "False",
+                  "nl": "Onwaar"
+                }
+              },
+              {
+                "id": "true",
+                "label": {
+                  "en": "True",
+                  "nl": "Waar"
+                }
+              }
+            ],
+            "title": {
+              "en": "Retain",
+              "nl": "Behouden"
+            }
+          }
+        ],
+        "id": "mqtt_publish_advanced"
+      },
+      {
+        "title": {
+          "en": "Send message on topic",
+          "nl": "Verzend bericht op onderwerp"
+        },
+        "titleFormatted": {
+          "en": "Send [[message]] on topic [[topic]]",
+          "nl": "Verzend [[message]] op onderwerp [[topic]]"
+        },
+        "hint": {
+          "en": "Publishes a message to the specified MQTT topic with default QoS 0 and no retain.",
+          "nl": "Publiceert een bericht naar het opgegeven MQTT onderwerp met standaard QoS 0 en geen retain."
+        },
+        "args": [
+          {
+            "name": "message",
+            "type": "text",
+            "placeholder": {
+              "en": "Message to send",
+              "nl": "Te verzenden bericht"
+            },
+            "title": {
+              "en": "Message",
+              "nl": "Bericht"
+            }
+          },
+          {
+            "name": "topic",
+            "type": "text",
+            "placeholder": {
+              "en": "broker/device/command",
+              "nl": "broker/apparaat/commando"
+            },
+            "title": {
+              "en": "Topic",
+              "nl": "Onderwerp"
+            }
+          }
+        ],
+        "id": "mqtt_publish_simple"
       }
     ]
   },
@@ -2192,6 +2384,11 @@
         "measure_temperature.exhaust",
         "itho_error",
         "itho_total_operation",
+        "itho_selection",
+        "itho_startup_counter",
+        "itho_absence",
+        "itho_highest_co2",
+        "itho_highest_rh",
         "itho_online"
       ],
       "capabilitiesOptions": {
@@ -2302,6 +2499,23 @@
         {
           "type": "group",
           "label": {
+            "en": "Information",
+            "nl": "Informatie"
+          },
+          "children": [
+            {
+              "id": "info_text",
+              "type": "label",
+              "label": {
+                "en": "For more information about NRG.Watch, visit: https://www.nrgwatch.nl/",
+                "nl": "Voor meer informatie over NRG.Watch, bezoek: https://www.nrgwatch.nl/"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
             "en": "MQTT Topics",
             "nl": "MQTT Onderwerpen"
           },
@@ -2370,6 +2584,19 @@
                 "en": "MQTT topic for sending commands",
                 "nl": "MQTT onderwerp voor het verzenden van commando's"
               }
+            },
+            {
+              "id": "topic_remotesinfo",
+              "type": "text",
+              "label": {
+                "en": "Remotes Info Topic",
+                "nl": "Afstandsbediening Info Onderwerp"
+              },
+              "value": "itho/remotesinfo",
+              "hint": {
+                "en": "MQTT topic for RF remotes information (JSON with remote capabilities)",
+                "nl": "MQTT onderwerp voor RF afstandsbediening informatie (JSON met afstandsbediening mogelijkheden)"
+              }
             }
           ]
         }
@@ -2387,7 +2614,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/drivers/awtrix_3/assets/icon.svg"
     },
     "awtrix_brightness": {
       "type": "number",
@@ -2404,7 +2631,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg",
+      "icon": "/drivers/awtrix_3/assets/icon.svg",
       "insights": true,
       "decimals": 0
     },
@@ -2417,7 +2644,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/drivers/awtrix_3/assets/icon.svg"
     },
     "awtrix_messages": {
       "type": "number",
@@ -2428,7 +2655,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg",
+      "icon": "/drivers/awtrix_3/assets/icon.svg",
       "insights": true,
       "decimals": 0
     },
@@ -2441,7 +2668,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/drivers/awtrix_3/assets/icon.svg"
     },
     "awtrix_uptime": {
       "type": "number",
@@ -2456,7 +2683,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg",
+      "icon": "/drivers/awtrix_3/assets/icon.svg",
       "insights": true
     },
     "awtrix_version": {
@@ -2468,7 +2695,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/drivers/awtrix_3/assets/icon.svg"
     },
     "awtrix_wifi_signal": {
       "type": "number",
@@ -2483,7 +2710,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg",
+      "icon": "/drivers/awtrix_3/assets/icon.svg",
       "insights": true,
       "decimals": 0
     },
@@ -2612,6 +2839,23 @@
       "uiComponent": "sensor",
       "icon": "/assets/icons/graph.svg"
     },
+    "itho_absence": {
+      "type": "number",
+      "title": {
+        "en": "Absence",
+        "nl": "Afwezigheid"
+      },
+      "units": {
+        "en": "min",
+        "nl": "min"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
     "itho_error": {
       "type": "number",
       "title": {
@@ -2715,6 +2959,40 @@
       "uiComponent": "sensor",
       "icon": "/assets/icons/performance.svg"
     },
+    "itho_highest_co2": {
+      "type": "number",
+      "title": {
+        "en": "Highest CO2",
+        "nl": "Hoogste CO2"
+      },
+      "units": {
+        "en": "ppm",
+        "nl": "ppm"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
+    "itho_highest_rh": {
+      "type": "number",
+      "title": {
+        "en": "Highest RH",
+        "nl": "Hoogste RV"
+      },
+      "units": {
+        "en": "%",
+        "nl": "%"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
     "itho_online": {
       "type": "boolean",
       "title": {
@@ -2743,6 +3021,19 @@
       "uiComponent": "sensor",
       "icon": "/assets/icons/percentage.svg"
     },
+    "itho_selection": {
+      "type": "number",
+      "title": {
+        "en": "Selection",
+        "nl": "Selectie"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
+    },
     "itho_speed_state": {
       "type": "number",
       "title": {
@@ -2758,6 +3049,19 @@
       "setable": false,
       "uiComponent": "sensor",
       "icon": "/assets/icons/performance.svg"
+    },
+    "itho_startup_counter": {
+      "type": "number",
+      "title": {
+        "en": "Startup Counter",
+        "nl": "Opstart Teller"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "insights": true,
+      "decimals": 0
     },
     "itho_total_operation": {
       "type": "number",

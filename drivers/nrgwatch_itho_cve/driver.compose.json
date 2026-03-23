@@ -17,6 +17,11 @@
     "measure_temperature.exhaust",
     "itho_error",
     "itho_total_operation",
+    "itho_selection",
+    "itho_startup_counter",
+    "itho_absence",
+    "itho_highest_co2",
+    "itho_highest_rh",
     "itho_online"
   ],
   "capabilitiesOptions": {
@@ -127,6 +132,23 @@
     {
       "type": "group",
       "label": {
+        "en": "Information",
+        "nl": "Informatie"
+      },
+      "children": [
+        {
+          "id": "info_text",
+          "type": "label",
+          "label": {
+            "en": "For more information about NRG.Watch, visit: https://www.nrgwatch.nl/",
+            "nl": "Voor meer informatie over NRG.Watch, bezoek: https://www.nrgwatch.nl/"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
         "en": "MQTT Topics",
         "nl": "MQTT Onderwerpen"
       },
@@ -194,6 +216,19 @@
           "hint": {
             "en": "MQTT topic for sending commands",
             "nl": "MQTT onderwerp voor het verzenden van commando's"
+          }
+        },
+        {
+          "id": "topic_remotesinfo",
+          "type": "text",
+          "label": {
+            "en": "Remotes Info Topic",
+            "nl": "Afstandsbediening Info Onderwerp"
+          },
+          "value": "itho/remotesinfo",
+          "hint": {
+            "en": "MQTT topic for RF remotes information (JSON with remote capabilities)",
+            "nl": "MQTT onderwerp voor RF afstandsbediening informatie (JSON met afstandsbediening mogelijkheden)"
           }
         }
       ]

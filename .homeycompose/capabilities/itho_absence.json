@@ -1,13 +1,17 @@
 {
   "type": "number",
   "title": {
-    "en": "Messages",
-    "nl": "Berichten"
+    "en": "Absence",
+    "nl": "Afwezigheid"
+  },
+  "units": {
+    "en": "min",
+    "nl": "min"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/drivers/awtrix_3/assets/icon.svg",
+  "icon": "/assets/icon.svg",
   "insights": true,
   "decimals": 0
 }

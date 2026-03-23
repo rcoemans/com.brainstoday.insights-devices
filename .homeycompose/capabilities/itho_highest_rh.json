@@ -1,13 +1,17 @@
 {
   "type": "number",
   "title": {
-    "en": "Messages",
-    "nl": "Berichten"
+    "en": "Highest RH",
+    "nl": "Hoogste RV"
+  },
+  "units": {
+    "en": "%",
+    "nl": "%"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/drivers/awtrix_3/assets/icon.svg",
+  "icon": "/assets/icon.svg",
   "insights": true,
   "decimals": 0
 }

@@ -1,0 +1,40 @@
+{
+  "title": {
+    "en": "Send message on topic",
+    "nl": "Verzend bericht op onderwerp"
+  },
+  "titleFormatted": {
+    "en": "Send [[message]] on topic [[topic]]",
+    "nl": "Verzend [[message]] op onderwerp [[topic]]"
+  },
+  "hint": {
+    "en": "Publishes a message to the specified MQTT topic with default QoS 0 and no retain.",
+    "nl": "Publiceert een bericht naar het opgegeven MQTT onderwerp met standaard QoS 0 en geen retain."
+  },
+  "args": [
+    {
+      "name": "message",
+      "type": "text",
+      "placeholder": {
+        "en": "Message to send",
+        "nl": "Te verzenden bericht"
+      },
+      "title": {
+        "en": "Message",
+        "nl": "Bericht"
+      }
+    },
+    {
+      "name": "topic",
+      "type": "text",
+      "placeholder": {
+        "en": "broker/device/command",
+        "nl": "broker/apparaat/commando"
+      },
+      "title": {
+        "en": "Topic",
+        "nl": "Onderwerp"
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": {
+    "en": "Message received on topic",
+    "nl": "Bericht ontvangen op onderwerp"
+  },
+  "titleFormatted": {
+    "en": "Message received on topic [[topic]]",
+    "nl": "Bericht ontvangen op onderwerp [[topic]]"
+  },
+  "hint": {
+    "en": "Triggers when a message is received on the specified MQTT topic. Supports wildcards: + (single level) and # (multi level).",
+    "nl": "Triggert wanneer een bericht wordt ontvangen op het opgegeven MQTT onderwerp. Ondersteunt wildcards: + (enkel niveau) en # (meerdere niveaus)."
+  },
+  "args": [
+    {
+      "name": "topic",
+      "type": "text",
+      "placeholder": {
+        "en": "broker/+/something/#",
+        "nl": "broker/+/iets/#"
+      },
+      "title": {
+        "en": "Topic",
+        "nl": "Onderwerp"
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "message",
+      "type": "string",
+      "title": {
+        "en": "Message received",
+        "nl": "Ontvangen bericht"
+      },
+      "example": {
+        "en": "Received message",
+        "nl": "Ontvangen bericht"
+      }
+    },
+    {
+      "name": "topic",
+      "type": "string",
+      "title": {
+        "en": "Topic",
+        "nl": "Onderwerp"
+      },
+      "example": {
+        "en": "broker/device/status",
+        "nl": "broker/apparaat/status"
+      }
+    }
+  ]
+}

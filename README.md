@@ -12,6 +12,7 @@ Homey app for creating **predefined and custom virtual measurement devices** tha
 
 - **Single MQTT broker connection** at app level
 - **Multiple device types** with predefined templates
+- **Generic MQTT client** - trigger on any MQTT topic and publish messages with custom QoS and retain settings
 - **Custom MQTT sensor** for flexible advanced use cases
 - **Automatic calculated values** (e.g., Delta T for floor heating)
 - **Insights logging** for all measurements
@@ -454,6 +455,18 @@ The app supports comprehensive MQTT broker configuration:
 
 - MQTT broker is/is not connected
 - MQTT broker is/is not disconnected
+
+### Generic MQTT Flow Cards
+
+**Trigger:**
+- **Message received on topic** - Triggers when a message is received on any MQTT topic (supports wildcards + and #)
+  - Returns: message content and topic name as tokens
+
+**Actions:**
+- **Send message on topic** - Publishes a message to an MQTT topic with default QoS 0
+- **Send message on topic (advanced)** - Publishes with custom QoS (0, 1, 2) and retain settings
+
+These cards allow you to use the app as a generic MQTT client without needing to create specific devices.
 
 ### Device-Specific Cards
 

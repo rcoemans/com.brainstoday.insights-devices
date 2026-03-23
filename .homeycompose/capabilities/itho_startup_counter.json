@@ -1,13 +1,13 @@
 {
   "type": "number",
   "title": {
-    "en": "Messages",
-    "nl": "Berichten"
+    "en": "Startup Counter",
+    "nl": "Opstart Teller"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/drivers/awtrix_3/assets/icon.svg",
+  "icon": "/assets/icon.svg",
   "insights": true,
   "decimals": 0
 }

@@ -1,13 +1,13 @@
 {
   "type": "number",
   "title": {
-    "en": "Messages",
-    "nl": "Berichten"
+    "en": "Selection",
+    "nl": "Selectie"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/drivers/awtrix_3/assets/icon.svg",
+  "icon": "/assets/icon.svg",
   "insights": true,
   "decimals": 0
 }

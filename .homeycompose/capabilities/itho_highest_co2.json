@@ -1,13 +1,17 @@
 {
   "type": "number",
   "title": {
-    "en": "Messages",
-    "nl": "Berichten"
+    "en": "Highest CO2",
+    "nl": "Hoogste CO2"
+  },
+  "units": {
+    "en": "ppm",
+    "nl": "ppm"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/drivers/awtrix_3/assets/icon.svg",
+  "icon": "/assets/icon.svg",
   "insights": true,
   "decimals": 0
 }

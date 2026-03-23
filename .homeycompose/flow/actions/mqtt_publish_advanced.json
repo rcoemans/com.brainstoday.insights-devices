@@ -1,0 +1,95 @@
+{
+  "title": {
+    "en": "Send message on topic (advanced)",
+    "nl": "Verzend bericht op onderwerp (geavanceerd)"
+  },
+  "titleFormatted": {
+    "en": "Send [[message]] on topic [[topic]] with QoS [[qos]] and retain [[retain]]",
+    "nl": "Verzend [[message]] op onderwerp [[topic]] met QoS [[qos]] en retain [[retain]]"
+  },
+  "hint": {
+    "en": "Publishes a message to the specified MQTT topic with custom QoS and retain settings.",
+    "nl": "Publiceert een bericht naar het opgegeven MQTT onderwerp met aangepaste QoS en retain instellingen."
+  },
+  "args": [
+    {
+      "name": "message",
+      "type": "text",
+      "placeholder": {
+        "en": "Message to send",
+        "nl": "Te verzenden bericht"
+      },
+      "title": {
+        "en": "Message",
+        "nl": "Bericht"
+      }
+    },
+    {
+      "name": "topic",
+      "type": "text",
+      "placeholder": {
+        "en": "broker/device/command",
+        "nl": "broker/apparaat/commando"
+      },
+      "title": {
+        "en": "Topic",
+        "nl": "Onderwerp"
+      }
+    },
+    {
+      "name": "qos",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "0",
+          "label": {
+            "en": "QoS 0 (At most once)",
+            "nl": "QoS 0 (Hoogstens eenmaal)"
+          }
+        },
+        {
+          "id": "1",
+          "label": {
+            "en": "QoS 1 (At least once)",
+            "nl": "QoS 1 (Minstens eenmaal)"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "QoS 2 (Exactly once)",
+            "nl": "QoS 2 (Precies eenmaal)"
+          }
+        }
+      ],
+      "title": {
+        "en": "Quality of Service",
+        "nl": "Kwaliteit van Service"
+      }
+    },
+    {
+      "name": "retain",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "false",
+          "label": {
+            "en": "False",
+            "nl": "Onwaar"
+          }
+        },
+        {
+          "id": "true",
+          "label": {
+            "en": "True",
+            "nl": "Waar"
+          }
+        }
+      ],
+      "title": {
+        "en": "Retain",
+        "nl": "Behouden"
+      }
+    }
+  ]
+}

@@ -13,6 +13,11 @@ interface IthoStatusPayload {
   'Fan speed (rpm)'?: number;
   Error?: number;
   'Total operation (hours)'?: number;
+  Selection?: number;
+  'Startup counter'?: number;
+  'Absence (min)'?: number;
+  'Highest CO2 concentration (ppm)'?: number;
+  'Highest RH concentration (%)'?: number;
   supplyTemp?: number;
   exhaustTemp?: number;
 }
@@ -151,6 +156,26 @@ module.exports = class NRGWatchIthoCVEDevice extends Homey.Device {
 
       if (data.exhaustTemp !== undefined) {
         this.setCapabilityValue('measure_temperature.exhaust', Number(data.exhaustTemp.toFixed(2))).catch(this.error);
+      }
+
+      if (data.Selection !== undefined) {
+        this.setCapabilityValue('itho_selection', data.Selection).catch(this.error);
+      }
+
+      if (data['Startup counter'] !== undefined) {
+        this.setCapabilityValue('itho_startup_counter', data['Startup counter']).catch(this.error);
+      }
+
+      if (data['Absence (min)'] !== undefined) {
+        this.setCapabilityValue('itho_absence', data['Absence (min)']).catch(this.error);
+      }
+
+      if (data['Highest CO2 concentration (ppm)'] !== undefined) {
+        this.setCapabilityValue('itho_highest_co2', data['Highest CO2 concentration (ppm)']).catch(this.error);
+      }
+
+      if (data['Highest RH concentration (%)'] !== undefined) {
+        this.setCapabilityValue('itho_highest_rh', data['Highest RH concentration (%)']).catch(this.error);
       }
 
       this.log('Status updated from MQTT');
