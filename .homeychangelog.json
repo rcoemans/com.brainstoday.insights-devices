@@ -13,5 +13,8 @@
   },
   "1.0.4": {
     "en": "Add Itho CVE fan speed action card (0–255 value) with documentation updates in README.md and ensure successful build and validation"
+  },
+  "1.0.5": {
+    "en": "Fix missing app and driver icon manifest fields to ensure proper icon display in Homey App Store, with successful build and validation"
   }
 }
