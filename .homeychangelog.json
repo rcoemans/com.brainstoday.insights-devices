@@ -10,5 +10,8 @@
   },
   "1.0.3": {
     "en": "CR-001 enhancements: add generic MQTT flow cards with wildcard support and improved trigger hints, extend Itho CVE device with new capabilities and settings, convert Awtrix 3 uptime to hours and update icons, simplify and update README documentation, and ensure successful build and validation"
+  },
+  "1.0.4": {
+    "en": "Add Itho CVE fan speed action card (0–255 value) with documentation updates in README.md and ensure successful build and validation"
   }
 }
