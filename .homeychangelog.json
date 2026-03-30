@@ -16,5 +16,8 @@
   },
   "1.0.5": {
     "en": "Fix missing app and driver icon manifest fields to ensure proper icon display in Homey App Store, with successful build and validation"
+  },
+  "1.0.6": {
+    "en": "Small fixes to Itho device"
   }
 }
