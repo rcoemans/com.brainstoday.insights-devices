@@ -76,23 +76,6 @@
     {
       "type": "group",
       "label": {
-        "en": "Information",
-        "nl": "Informatie"
-      },
-      "children": [
-        {
-          "id": "info_text",
-          "type": "label",
-          "label": {
-            "en": "For more information about Awtrix 3, visit: https://blueforcer.github.io/awtrix3/#/",
-            "nl": "Voor meer informatie over Awtrix 3, bezoek: https://blueforcer.github.io/awtrix3/#/"
-          }
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "label": {
         "en": "MQTT Topics",
         "nl": "MQTT Onderwerpen"
       },

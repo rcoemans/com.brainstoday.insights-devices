@@ -36,6 +36,12 @@ MQTT Broker Configuration:
 
 Each device type has specific MQTT topic requirements and payload formats. Configure topics in device settings after pairing.
 
+Logging & Diagnostics:
+- View application logs in app settings under "Device Logs"
+- Filter logs by source: All, App, MQTT, Itho CVE
+- Copy logs to clipboard for troubleshooting
+- Clear logs when no longer needed
+
 For detailed documentation visit:
 - README.md in the app repository
 - Awtrix 3: https://blueforcer.github.io/awtrix3/#/

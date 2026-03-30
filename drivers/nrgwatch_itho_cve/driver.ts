@@ -85,7 +85,8 @@ module.exports = class NRGWatchIthoCVEDriver extends Homey.Driver {
           topic_lastcmd: 'itho/lastcmd',
           topic_state: 'itho/state',
           topic_lwt: 'itho/LWT',
-          topic_cmd: 'itho/cmd'
+          topic_cmd: 'itho/cmd',
+          topic_remotesinfo: 'itho/remotesinfo'
         }
       }
     ];

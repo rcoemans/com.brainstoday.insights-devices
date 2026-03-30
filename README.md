@@ -489,12 +489,26 @@ All condition cards use consistent operators:
 
 ## Logging & Diagnostics
 
-The app maintains an MQTT broker log accessible through the app settings:
+The app includes a centralized logging system accessible through the app settings page (**App** → **Settings** → **Device Logs**).
 
-- Connection events
-- Subscription changes
-- Message parsing errors
-- Command publish results
+**Features:**
+- View logs filtered by source: All, App, MQTT, Itho CVE
+- Copy logs to clipboard for easy sharing and troubleshooting
+- Clear all logs
+- Logs auto-load when opening the settings page
+- Up to 500 log entries retained in memory
+
+**Log sources:**
+- **App** - Application lifecycle events
+- **MQTT** - Broker connection, subscription, and publish events
+- **Itho CVE** - Device status updates, commands, and LWT messages
+
+**Log format:**
+```
+2025-01-15 14:32:01 [INFO] [MQTT] Connected to MQTT broker
+2025-01-15 14:32:01 [INFO] [Itho CVE] Subscribed to itho/ithostatus
+2025-01-15 14:32:05 [INFO] [Itho CVE] First status message received, device marked available
+```
 
 ## Known Limitations
 

@@ -2,13 +2,18 @@
 
 import Homey from 'homey';
 import MQTTManager from './lib/MQTTManager';
+import { AppLogger } from './lib/AppLogger';
 
 module.exports = class InsightsDevicesApp extends Homey.App {
 
   mqttManager!: MQTTManager;
+  public appLogger!: AppLogger;
 
   async onInit() {
     this.log('Insights Devices app has been initialized');
+
+    this.appLogger = new AppLogger(500);
+    this.appLogger.info('App', 'Insights Devices app initialized');
 
     this.mqttManager = new MQTTManager(this);
     await this.mqttManager.init();

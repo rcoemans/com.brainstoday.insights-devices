@@ -133,23 +133,6 @@
     {
       "type": "group",
       "label": {
-        "en": "Information",
-        "nl": "Informatie"
-      },
-      "children": [
-        {
-          "id": "info_text",
-          "type": "label",
-          "label": {
-            "en": "For more information about NRG.Watch, visit: https://www.nrgwatch.nl/",
-            "nl": "Voor meer informatie over NRG.Watch, bezoek: https://www.nrgwatch.nl/"
-          }
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "label": {
         "en": "MQTT Topics",
         "nl": "MQTT Onderwerpen"
       },

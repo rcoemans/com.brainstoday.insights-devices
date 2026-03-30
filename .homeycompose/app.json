@@ -21,9 +21,25 @@
   ],
   "permissions": [],
   "api": {
-    "getLog": {
+    "getLogs": {
       "method": "GET",
-      "path": "/log"
+      "path": "/getLogs"
+    },
+    "getLogsMqtt": {
+      "method": "GET",
+      "path": "/getLogsMqtt"
+    },
+    "getLogsIthoCve": {
+      "method": "GET",
+      "path": "/getLogsIthoCve"
+    },
+    "getLogsApp": {
+      "method": "GET",
+      "path": "/getLogsApp"
+    },
+    "clearLogs": {
+      "method": "GET",
+      "path": "/clearLogs"
     },
     "postReconnect": {
       "method": "POST",

@@ -2,6 +2,7 @@
 
 import Homey from 'homey';
 import mqtt from 'mqtt';
+import { AppLogger } from './AppLogger';
 
 interface MQTTSettings {
   broker: string;
@@ -284,11 +285,18 @@ export default class MQTTManager {
     return [...this.logEntries];
   }
 
+  private get appLogger(): AppLogger | null {
+    return (this.app as any).appLogger || null;
+  }
+
   private log(...args: any[]) {
     const timestamp = new Date().toISOString();
     const message = `[${timestamp}] ${args.join(' ')}`;
     this.app.log(message);
     this.addLogEntry(message);
+    if (this.appLogger) {
+      this.appLogger.info('MQTT', args.join(' '));
+    }
   }
 
   private error(...args: any[]) {
@@ -296,6 +304,9 @@ export default class MQTTManager {
     const message = `[${timestamp}] ERROR: ${args.join(' ')}`;
     this.app.error(message);
     this.addLogEntry(message);
+    if (this.appLogger) {
+      this.appLogger.error('MQTT', args.join(' '));
+    }
   }
 
   private addLogEntry(message: string) {
